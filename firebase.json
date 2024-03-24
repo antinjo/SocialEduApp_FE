@@ -1,0 +1,10 @@
+{
+  "hosting": {
+    "public": "dist/social-edu-app-fe/browser",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ]
+  }
+}
