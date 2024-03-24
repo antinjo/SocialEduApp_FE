@@ -1,0 +1,39 @@
+<div class="card flex">
+    <div class="card flex justify-content-center">
+        <div class="flex flex-column gap-3">
+            <button (click)="openTab('OP')" class="w-full text-center p-button justify-content-center">Općenito</button>
+            <button (click)="openTab('OB')" class="w-full text-center p-button justify-content-center">Obrazovanje</button>
+            <button (click)="openTab('IN')" class="w-full text-center p-button justify-content-center">Interesi</button>
+            <button (click)="openTab('RI')" class="w-full text-center p-button justify-content-center">Radno iskustvo</button>
+        </div>
+    </div>
+    <p-divider layout="vertical"></p-divider>
+        <div *ngIf="opcenitoLoaded===true">
+            <div  *ngFor="let _ of [].constructor(3)">
+                <p>
+                    <span class="pi pi-star-fill"> TODO</span>
+                </p>
+            </div>
+        </div>
+        <div *ngIf="obrazovanjeLoaded===true">
+            <div *ngFor="let ed of education">
+                <p>
+                    <span class="pi pi-file-edit"> {{ed}} TODO</span>
+                </p>
+            </div>
+        </div>
+        <div *ngIf="radnoIskustvoLoaded===true">
+            <div *ngFor="let ex of experience">
+                <p>
+                    <span class="pi pi-paperclip"> {{ex}}</span>
+                </p>
+            </div>
+        </div> 
+        <div *ngIf="interesiLoaded===true">
+            <div *ngFor="let int of interests">
+                <p>
+                    <span class="pi pi-heart-fill"> {{int}}</span>
+                </p>
+            </div>
+        <div> 
+</div>

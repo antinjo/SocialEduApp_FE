@@ -1,0 +1,32 @@
+<div class="w-full">
+    <div class="w-full">
+        <div>
+            Za tebe (For you page)
+        </div>
+        <div>
+            Preporuceno (Recommended)
+        </div>
+    </div>
+    <div class="card flex justify-content-center w-full">
+    <p-accordion [activeIndex]>
+        <p-accordionTab header="Kolegiji">
+            <p *ngFor ="let subject of subjects">
+                {{subject.name}}
+                <p-divider></p-divider>
+            </p>
+        </p-accordionTab>
+        <p-accordionTab header="Studenti">
+            <p *ngFor ="let user of users">
+                {{user.firstName +" "+ user.lastName}}
+                <p-divider></p-divider>
+            </p>
+        </p-accordionTab>
+        <p-accordionTab header="Ustanove">
+            <p *ngFor ="let institution of institutions">
+                {{institution.name}}
+                <p-divider></p-divider>
+            </p>
+        </p-accordionTab>
+    </p-accordion>
+</div>
+</div>

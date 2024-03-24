@@ -1,0 +1,30 @@
+<div class="card flex justify-content-center">
+    <div *ngFor="let tasks of projectTasks">
+        <p-panel header="{{tasks.title}}" [toggleable]="true">
+            <div>
+                <h2>Opis</h2>
+                <p>
+                    {{tasks.description}}
+                </p>
+                <!-- TODO add correct routing -->
+                <p-divider></p-divider>
+                <p class="flex justify-content-center">
+                    <a class="border-round flex justify-content-center my-auto text-center w-5 bg-primary" [routerLink]="['/']">
+                                <h2 class="bg-primary">Projekti studenata</h2>
+                    </a>
+                </p>
+                <p-divider></p-divider>
+                <div class="card flex justify-content-center">
+                    <p-toast></p-toast>
+                    <p-fileUpload name="demo[]" url="https://www.primefaces.org/cdn/api/upload.php" (onUpload)="onUpload($event)" [multiple]="true" maxFileSize="1000000">
+                        <ng-template pTemplate="content">
+                            <ul *ngIf="uploadedFiles.length">
+                                <li *ngFor="let file of uploadedFiles">{{ file.name }} - {{ file.size }} bytes</li>
+                            </ul>
+                        </ng-template>
+                    </p-fileUpload>
+                </div>
+            </div>
+        </p-panel>
+    </div>
+</div>

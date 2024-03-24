@@ -1,0 +1,18 @@
+<div class="bg-primary h-10rem static"></div>
+<div class="p-5 text-4xl">{{subjectName}}</div>
+<p-tabView>
+    <p-tabPanel header="Informacije">
+            <app-tab-card [tabName]="'Sudionici'"></app-tab-card>
+            <app-subject-info-card></app-subject-info-card>
+    </p-tabPanel>
+    <p-tabPanel header="Projekti">
+        <p>
+            <app-project-tab></app-project-tab>
+        </p>
+    </p-tabPanel>
+    <p-tabPanel header="Forumi">
+        <p>
+            <app-post></app-post>
+        </p>
+    </p-tabPanel>
+</p-tabView>

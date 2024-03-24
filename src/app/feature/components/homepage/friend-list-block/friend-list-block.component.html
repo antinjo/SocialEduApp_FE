@@ -1,0 +1,13 @@
+
+<div class="w-full">
+    Predloženo za Vas
+    <hr />
+    <div class="card flex justify-content-center">
+        <p-listbox
+            class="w-full xl:w-15rem"
+            [options]="cities" 
+            [(ngModel)]="selectedCity" 
+            optionLabel="name" >
+        </p-listbox>
+    </div>
+</div>
