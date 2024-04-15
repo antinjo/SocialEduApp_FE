@@ -27,7 +27,6 @@ export class LoginComponent {
     this.password = ""
     this.email =""
 
-    this.router.navigate(['/homepage']);
     
     this.authObs.subscribe(
       resData => {

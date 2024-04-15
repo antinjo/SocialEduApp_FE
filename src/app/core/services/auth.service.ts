@@ -17,7 +17,7 @@ export class AuthService {
   login(email: string, password: string) {
     return this.http
       .post<AuthResponseData>(
-        "https://localhost:7107/api/login",
+        "https://localhost:7107/login",
         {
           email: email,
           password: password,
