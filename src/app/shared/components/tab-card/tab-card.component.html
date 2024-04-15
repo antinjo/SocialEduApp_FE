@@ -4,14 +4,18 @@
         <div *ngIf="show===false">
                <div class="grid">
                 <div class="col-5 ml-5 mb-3" *ngFor="let folder of folderInfo.slice(0,6)">
+                    <a [routerLink]="['/userpage']">
                     <div class="text-center p-3 border-round-sm bg-primary font-bold">{{folder.firstName + " " + folder.lastName}}</div>
+                    </a>
                 </div>
             </div>
         </div>
         <div *ngIf="show===true">
             <div class="grid">
                 <div class="col-5 ml-5 mb-3" *ngFor="let folder of folderInfo.slice(first,pageCount)">
+                    <a [routerLink]="['/userpage']">
                     <div class="text-center p-3 border-round-sm bg-primary font-bold">{{folder.firstName + " " + folder.lastName}}</div>
+                    </a>
                 </div>
             </div>
             <p-paginator (onPageChange)="onPageChange($event)" [first]="first" [rows]="rows" [totalRecords]="folderLength"></p-paginator>
@@ -26,14 +30,18 @@
         <div *ngIf="show===false">
                <div class="grid">
                 <div class="col-5 ml-5 mb-3" *ngFor="let folder of folderInfo.slice(0,6)">
+                    <a [routerLink]="['/userpage']">
                     <div class="text-center p-3 border-round-sm bg-primary font-bold">{{folder.userFirstName + " " + folder.userLastName}}</div>
+                    </a>
                 </div>
             </div>
         </div>
         <div *ngIf="show===true">
             <div class="grid">
                 <div class="col-5 ml-5 mb-3" *ngFor="let folder of folderInfo.slice(first,pageCount)">
+                    <a [routerLink]="['/userpage']">
                     <div class="text-center p-3 border-round-sm bg-primary font-bold">{{folder.userFirstName + " " + folder.userLastName}}</div>
+                    </a>
                 </div>
             </div>
             <p-paginator (onPageChange)="onPageChange($event)" [first]="first" [rows]="rows" [totalRecords]="folderLength"></p-paginator>
@@ -48,14 +56,18 @@
             <div *ngIf="show===false">
                 <div class="grid">
                     <div class="col-5 ml-5 mb-3" *ngFor="let folder of folderInfo.slice(0,6)">
+                        <a [routerLink]="['/userpage']">
                         <div class="text-center p-3 border-round-sm bg-primary font-bold">{{folder.name}}</div>
+                        </a>
                     </div>
                 </div>
             </div>
             <div *ngIf="show===true">
                 <div class="grid">
                     <div class="col-5 ml-5 mb-3" *ngFor="let folder of folderInfo.slice(first,pageCount)">
+                        <a [routerLink]="['/userpage']">
                         <div class="text-center p-3 border-round-sm bg-primary font-bold">{{folder.name}}</div>
+                        </a>
                     </div>
                 </div>
                 <p-paginator (onPageChange)="onPageChange($event)" [first]="first" [rows]="rows" [totalRecords]="folderLength"></p-paginator>

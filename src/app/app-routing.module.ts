@@ -4,6 +4,7 @@ import { FaksPageComponent } from './feature/components/faks-page/faks-page.comp
 import { HomepageComponent } from './feature/components/homepage/homepage.component';
 import { UserPageComponent } from './feature/components/user-page/user-page.component';
 import { SubjectPageComponent } from './feature/components/subject-page/subject-page.component';
+import { LoginComponent } from './core/components/login/login.component';
 
 const routes: Routes = [
   {
@@ -12,11 +13,15 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   {
+    path: '',
+    component:LoginComponent
+  },
+  {
     path: 'fakspage',
     component:FaksPageComponent
   },
   {
-    path: '', 
+    path: 'homepage', 
     component:HomepageComponent},
   {
     path: 'userpage', 

@@ -11,6 +11,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
 import { NgxsLoggerPluginModule } from '@ngxs/logger-plugin';
 import { FeatureState } from './feature/store/feature.store';
+import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,11 @@ import { FeatureState } from './feature/store/feature.store';
     NgxsLoggerPluginModule,
     HttpClientModule,
   ],
-  providers: [],
+  providers: [
+    {provide: LocationStrategy, 
+      useClass: HashLocationStrategy
+    }
+    ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

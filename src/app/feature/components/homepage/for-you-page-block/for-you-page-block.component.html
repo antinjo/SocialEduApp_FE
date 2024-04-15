@@ -11,19 +11,19 @@
     <p-accordion [activeIndex]>
         <p-accordionTab header="Kolegiji">
             <p *ngFor ="let subject of subjects">
-                {{subject.name}}
+                <a [routerLink]="['/subjectpage']">{{subject.name}}</a>
                 <p-divider></p-divider>
             </p>
         </p-accordionTab>
         <p-accordionTab header="Studenti">
             <p *ngFor ="let user of users">
-                {{user.firstName +" "+ user.lastName}}
+                <a [routerLink]="['/userpage']">{{user.firstName +" "+ user.lastName}}</a>
                 <p-divider></p-divider>
             </p>
         </p-accordionTab>
         <p-accordionTab header="Ustanove">
             <p *ngFor ="let institution of institutions">
-                {{institution.name}}
+                <a [routerLink]="['/fakspage']">{{institution.name}}</a>
                 <p-divider></p-divider>
             </p>
         </p-accordionTab>
