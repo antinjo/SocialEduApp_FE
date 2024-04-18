@@ -16,8 +16,8 @@ export class HomepageComponent implements OnInit{
     ){}
 
   ngOnInit(): void {
-      this.store.dispatch(new GetUserInfo())
-      this.store.dispatch(new GetSavedUsersInfo())
-      this.store.dispatch(new GetSubjectForUser())
+      // this.store.dispatch(new GetUserInfo())
+      // this.store.dispatch(new GetSavedUsersInfo())
+      // this.store.dispatch(new GetSubjectForUser())
   }
 }

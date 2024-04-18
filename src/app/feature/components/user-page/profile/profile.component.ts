@@ -19,11 +19,11 @@ user:any;
 @Select(FeatureState.getUserInfo) user$:Observable<UserModel>
 
 ngOnInit(): void {
-  this.store.dispatch(new GetUserInfo())
-  this.store.dispatch(new GetSubmissionsFolder())
-    this.user$.subscribe((res)=>{
-      this.user = res
-    })
+  // this.store.dispatch(new GetUserInfo())
+  // this.store.dispatch(new GetSubmissionsFolder())
+  //   this.user$.subscribe((res)=>{
+  //     this.user = res
+  //   })
 }
 
 }

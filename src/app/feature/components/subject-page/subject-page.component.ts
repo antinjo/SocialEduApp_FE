@@ -12,8 +12,8 @@ export class SubjectPageComponent implements OnInit {
   constructor(private store:Store){}
 
   ngOnInit(): void {
-      this.store.dispatch(new GetSubjectInfo())
-      this.store.dispatch(new GetSubmissionsFolder())
+      // this.store.dispatch(new GetSubjectInfo())
+      // this.store.dispatch(new GetSubmissionsFolder())
 
   }
 }

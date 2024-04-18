@@ -30,8 +30,6 @@ export class LoginComponent {
     
     this.authObs.subscribe(
       resData => {
-        console.log(resData);
-        
         this.router.navigate(['/homepage']);
       },
       errorMessage => {

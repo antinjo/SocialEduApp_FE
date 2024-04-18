@@ -12,8 +12,8 @@ export class FaksPageComponent implements OnInit{
   constructor(private store: Store){}
 
   ngOnInit(): void {
-    this.store.dispatch(new GetInstitutions());
-    this.store.dispatch(new GetSubjectForInstitution());
+    // this.store.dispatch(new GetInstitutions());
+    // this.store.dispatch(new GetSubjectForInstitution());
       
   }
 }
