@@ -1,10 +1,10 @@
-<div class="my-3" *ngFor="let post of posts?.slice(0,10); let i = index">
+<!-- <div class="my-3" *ngFor="let post of posts?.slice(0,10); let i = index"> -->
     <p-panel>
         <ng-template class="p-panel-header-reset" pTemplate="header">
             <div class="grid">
                 <div class="flex align-items-center gap-2 w-12">
                     <p-avatar image="https://primefaces.org/cdn/primeng/images/demo/avatar/amyelsner.png" size="large" shape="circle" />
-                    <a (click)="goToPerson(post.userEmail)"><span class="font-bold">{{post?.userFirstName + " " + post?.userLastName}}</span></a>
+                    <!-- <a (click)="goToPerson(post.userEmail)"><span class="font-bold">{{post?.userFirstName + " " + post?.userLastName}}</span></a> -->
                 </div>
             </div>
         </ng-template>
@@ -41,33 +41,33 @@
             <div class="grid">
                 <div>
                     <div class="flex align-items-center w-12">
-                        <h3>{{post.title}}</h3>
+                        <!-- <h3>{{post.title}}</h3> -->
                     </div>
                     <div class="flex align-items-center w-12 py-1">
-                        <span>{{post.description}}</span>
+                        <!-- <span>{{post.description}}</span> -->
                     </div>
                 </div>
                 <div>
                     <div class="flex align-items-center w-9 py-1 mt-3">
-                        <span><span class="font-bold">Kolegij:</span> {{post.subjectName}}</span>
+                        <!-- <span><span class="font-bold">Kolegij:</span> {{post.subjectName}}</span> -->
                     </div>
                     <div class="flex align-items-center w-9 py-1">
-                        <span><span class="font-bold">Naziv projekta:</span> {{post.projectTask.title}}</span>
+                        <!-- <span><span class="font-bold">Naziv projekta:</span> {{post.projectTask.title}}</span> -->
                     </div>
                     <div class="flex align-items-center w-12 py-1">
-                        <span><span class="font-bold">Zadatak:</span> {{post.projectTask.description}}</span>
+                        <!-- <span><span class="font-bold">Zadatak:</span> {{post.projectTask.description}}</span> -->
                     </div>
                     <div class="grid">
-                        <img class="w-10 col-offset-1 p-3" *ngIf="post.imageLink != ''" src="{{post.imageLink}}">
+                        <!-- <img class="w-10 col-offset-1 p-3" *ngIf="post.imageLink != ''" src="{{post.imageLink}}"> -->
                     </div>
                     <div class="flex align-items-center w-12 py-1 m-1">
-                        <a href="{{post.link}}" class="border-round flex justify-content-center my-auto text-center secondary-color-button w-6 col-offset-3">
+                        <!-- <a href="{{post.link}}" class="border-round flex justify-content-center my-auto text-center secondary-color-button w-6 col-offset-3"> -->
                             <div class="secondary-color-button white-text button-github">GitHub Link</div>
-                        </a>
+                        <!-- </a> -->
                     </div>
                 </div>
             </div>
         </div>
     </p-panel>
-</div>
+<!-- </div> -->
 

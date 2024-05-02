@@ -1,9 +1,9 @@
 import {
   BaseIcon
-} from "./chunk-L4FTZG3E.js";
+} from "./chunk-JVOFC3HO.js";
 import {
   UniqueComponentId
-} from "./chunk-SE62ALTL.js";
+} from "./chunk-BKZZUF5V.js";
 import {
   Component,
   setClassMetadata,
@@ -19,7 +19,7 @@ import {
   ɵɵgetInheritedFactory,
   ɵɵnamespaceSVG,
   ɵɵproperty
-} from "./chunk-M7CTU4LC.js";
+} from "./chunk-WTO4EDN6.js";
 
 // node_modules/primeng/fesm2022/primeng-icons-windowmaximize.mjs
 var WindowMaximizeIcon = class _WindowMaximizeIcon extends BaseIcon {
@@ -165,4 +165,4 @@ export {
   WindowMaximizeIcon,
   WindowMinimizeIcon
 };
-//# sourceMappingURL=chunk-7VSIMZ3A.js.map
+//# sourceMappingURL=chunk-BYQSF7UV.js.map

@@ -30,12 +30,8 @@ import { FileUploadModule } from 'primeng/fileupload';
 import { MessagesModule } from 'primeng/messages';
 import { ToastModule } from 'primeng/toast';
 import { NotificationsComponent } from './components/notifications/notifications.component';
-import { SavedFolderComponent } from './components/tab-card/saved-folder/saved-folder.component';
-import { ProjectFolderComponent } from './components/tab-card/project-folder/project-folder.component';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { DialogModule } from 'primeng/dialog';
-import { TranslateModule } from '@ngx-translate/core';
-import { StreamAutocompleteTextareaModule, StreamChatModule } from 'stream-chat-angular';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { DynamicDialogModule } from 'primeng/dynamicdialog';
 @NgModule({
@@ -44,9 +40,7 @@ import { DynamicDialogModule } from 'primeng/dynamicdialog';
     TabCardComponent,
     InfoCardComponent,
     InfoComponent,
-    NotificationsComponent,
-    SavedFolderComponent,
-    ProjectFolderComponent,
+    NotificationsComponent
   ],
   imports: [
     CommonModule,
@@ -77,9 +71,6 @@ import { DynamicDialogModule } from 'primeng/dynamicdialog';
     InputTextareaModule,
     DialogModule,
     ReactiveFormsModule,
-    TranslateModule, 
-    StreamAutocompleteTextareaModule, 
-    StreamChatModule,
     ProgressSpinnerModule,
     DynamicDialogModule,
   ],
@@ -112,15 +103,10 @@ import { DynamicDialogModule } from 'primeng/dynamicdialog';
     MessagesModule,
     ToastModule,
     NotificationsComponent,
-    SavedFolderComponent,
-    ProjectFolderComponent,
     InputTextareaModule,
     InfoComponent,
     DialogModule,
     ReactiveFormsModule,
-    TranslateModule, 
-    StreamAutocompleteTextareaModule, 
-    StreamChatModule,
     ProgressSpinnerModule,
     DynamicDialogModule,
   ]
