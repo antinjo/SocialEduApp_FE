@@ -29,7 +29,7 @@ export class HomepageComponent implements OnInit{
       this.store.dispatch(new GetPosts(params['userName']))
     })
     //TODO maknuti ovo jer bi trebalo biti vec u paramsima od logina + dodati GetUserInfo
-      this.store.dispatch(new GetSavedUsersInfo())
+      // this.store.dispatch(new GetSavedUsersInfo())
       //this.store.dispatch(new GetSubjectForUser())
       
       this.homepageservice.toggleEvent.subscribe((toggle:boolean) =>{
