@@ -1,0 +1,12 @@
+<div class="px-2 shadow-3">
+    <h3>Obavijesti</h3>
+<p-divider></p-divider>
+    <div *ngFor="let noti of notifications.slice(0,5)">
+        <p>{{user.firstName +" "+ user.lastName}}</p>
+        <P>{{noti.message}}</P>
+        <p-divider></p-divider>
+    </div>
+</div>
+
+
+

@@ -7,12 +7,13 @@ import { UserModel } from "./user.model";
 export interface SubjectModel{
     id: string,
     name: string,
+    abbreviation:string,
     description: string,
     institutionID:string,
     institution: InstitutionsModel,
     createdDate: Date,
     users?:UserModel[],
-    forum?:ForumModel[],
+    forums?:ForumModel[],
     projectTasks?:ProjectTaksModel[],
-    mainPerson:MainPersonModel
+    mainPerson?:MainPersonModel
 } 

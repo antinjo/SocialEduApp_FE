@@ -1,19 +1,48 @@
-<p-toolbar styleClass="bg-gray-900 shadow-2" [style]="{ 'background-image': 'linear-gradient(to right, var(--bluegray-500), var(--bluegray-800))' }">
-    <ng-template pTemplate="start">
-        <a [routerLink]="['/homepage']">
-            <img src="assets/Vector_4.png" />
-        </a>
-    </ng-template>
-    <ng-template pTemplate="center">
-        <div class="flex flex-wrap align-items-center gap-3">
-            <input pInputText class="w-full hidden" pKeyFilter="alphanum" />
-        </div>
-    </ng-template>
-    <ng-template pTemplate="end">
-        <div class="col-8">
-            <a [routerLink]="['/userpage']">
-            <p-avatar image="https://primefaces.org/cdn/primeng/images/demo/avatar/amyelsner.png" styleClass="mr-2" size="large" [style]="{ 'background-color': '#2196F3', color: '#ffffff' }" shape="circle"></p-avatar>
-            </a>
-        </div>
-    </ng-template>
-</p-toolbar>
+<div class="grid shadow-3">
+    <div class="col-12 p-0 shadow-3">
+        <p-toolbar styleClass="shadow-2" [style]="{ 'background':'#16679A'}">
+            <ng-template pTemplate="start">
+                <a *ngIf="isLoggedIn$ | async" [routerLink]="['/homepage']" [queryParams]="{userName: loggedInUser}">
+                    <img src="assets/favicon.png" />
+                </a>
+                <a *ngIf="!(isLoggedIn$ | async)">
+                    <img src="assets/favicon.png" />
+                </a>
+            </ng-template>
+            <ng-template pTemplate="center">
+                <div *ngIf="isLoggedIn$ | async" class="grid">
+                    <div class="flex justify-content-end align-items-center">
+                        <div class="p-input-icon-left">
+                            <i class="pi pi-search"></i>
+                            <input class=" pl-5 col-12 border-round inputMargin" type="text" pInputText placeholder="Global Search" />
+                        </div>
+                    </div>
+                </div>
+            </ng-template>
+            <ng-template pTemplate="end">
+                <div class="flex flex-wrap align-items-center gap-3">
+                    <p-avatar styleClass="mr-2 cursor-pointer" size="large" (click)="showDialog()" [style]="{ 'background-color': '#ffffff', color: '#00000' }" shape="circle"><span class="pi pi-question-circle cursor-pointer"></span></p-avatar>
+                    <p-avatar *ngIf="isLoggedIn$ | async" [routerLink]="['/chat']" [queryParams]="{userName: loggedInUser }" styleClass="mr-2 cursor-pointer" size="large" [style]="{ 'background-color': '#ffffff', color: '#00000' }" shape="circle"><span class="pi pi-comments cursor-pointer"></span></p-avatar>
+                    <p-avatar *ngIf="isLoggedIn$ | async" (click)="onToggle()" styleClass="mr-2 cursor-pointer" size="large" [style]="{ 'background-color': '#ffffff', color: '#00000' }" shape="circle"><span class="pi pi-bell cursor-pointer"></span></p-avatar>
+                    <a *ngIf="isLoggedIn$ | async" [routerLink]="['/userpage']" [queryParams]="{userName: loggedInUser }">
+                    <p-avatar image="{{loggedInUserModel?.image}}" styleClass="mr-2" size="large" [style]="{ 'background-color': '#2196F3', color: '#ffffff' }" shape="circle"></p-avatar>
+                    </a>
+                </div>
+            </ng-template>
+        </p-toolbar>
+    </div>
+</div>
+<div *ngIf="toggle" class="grid">
+    <div class="absolute z-1 col-3 col-offset-9 flex align-items-center justify-content-center">
+        <app-notifications class="relative z-1 surface-section border-round"></app-notifications>
+    </div>
+</div>
+<div class="card flex justify-content-center">
+    <p-dialog header="Pomoć" [(visible)]="visible" [modal]="true" [style]="{ width: '75vw' }" [draggable]="false" [resizable]="false">
+        <p class="m-0">  
+            Dobrodošli u Help Window! Ovdje ćete pronaći brze smjernice za korištenje naše web aplikacije, 
+            uključujući navigaciju, pretragu, često postavljana pitanja te opciju za kontakt s našim timom podrške. Kontraktirajte nas na <a class="text-2xl" href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">help&#64;student.uniri.hr</a>
+        </p>
+    </p-dialog>
+</div>
+

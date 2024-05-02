@@ -1,23 +1,20 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { AuthResponseData } from '../models/authResponsData.model';
-import { catchError, tap, throwError } from 'rxjs';
+import { environment } from '../../../environments/environment';
+import { catchError, throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  constructor(
-    private http:HttpClient
-
-
-  ) { }
+  constructor(private http:HttpClient) {}
 
   login(email: string, password: string) {
     return this.http
       .post<AuthResponseData>(
-        "https://localhost:7107/login",
+        environment.link+"/login",
         {
           email: email,
           password: password,
@@ -26,6 +23,19 @@ export class AuthService {
       .pipe(
         catchError(this.handleError)
         )
+  }
+  register(email: string, password: string) {
+    return this.http
+      .post<AuthResponseData>(
+        environment.link+"/register",
+        {
+          email: email,
+          password: password,
+        }
+      )
+      .pipe(
+        catchError(this.handleError)
+      )
   }
 
   private handleError(errorRes: HttpErrorResponse) {

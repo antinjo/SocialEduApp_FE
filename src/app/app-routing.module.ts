@@ -5,6 +5,7 @@ import { HomepageComponent } from './feature/components/homepage/homepage.compon
 import { UserPageComponent } from './feature/components/user-page/user-page.component';
 import { SubjectPageComponent } from './feature/components/subject-page/subject-page.component';
 import { LoginComponent } from './core/components/login/login.component';
+import { ChatComponent } from './shared/components/chat/chat.component';
 
 const routes: Routes = [
   {
@@ -17,6 +18,10 @@ const routes: Routes = [
     component:LoginComponent
   },
   {
+    path: 'chat',
+    component:ChatComponent
+  },
+  {
     path: 'fakspage',
     component:FaksPageComponent
   },
@@ -26,6 +31,9 @@ const routes: Routes = [
   {
     path: 'userpage', 
     component:UserPageComponent},
+  {
+      path: 'userpage/:name', 
+      component:UserPageComponent},
   {
     path: 'subjectpage', 
     component:SubjectPageComponent},

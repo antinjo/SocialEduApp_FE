@@ -1,12 +1,15 @@
-<div class="flex">
-    <div class="flex-1 flex align-items-center justify-content-center bg-primary font-bold m-2 px-5 py-3 border-round w-1">
+<div *ngIf="isLoadedHomePage$ | async" class="grid pb-5">
+    <div class="flex justify-content-center font-bold px-5 py-3 w-2 right-border">
         <app-for-you-page-block></app-for-you-page-block>
     </div>
-    <div class="flex-1 md:flex-none flex align-items-center justify-content-center bg-primary font-bold m-2 px-5 py-3 border-round w-6">
+    <div class="flex md:flex-none flex align-items-center justify-content-center font-bold px-5 py-1 w-8 bottom-border">
         <app-post-page-block></app-post-page-block>
     </div>
-    <div class="flex-1 flex align-items-center justify-content-center bg-primary font-bold m-2 px-5 py-3 border-round w-3">
-        <app-friend-list-block></app-friend-list-block
-    ></div>
+    <div class="flex align-items-center justify-content-center font-bold px-5 py-3 w-2 left-border">
+        <app-friend-list-block></app-friend-list-block>
+    </div>
+</div>
+<div *ngIf="!(isLoadedHomePage$ | async)" class="flex justify-content-center p-8">
+    <p-progressSpinner></p-progressSpinner>
 </div>
 

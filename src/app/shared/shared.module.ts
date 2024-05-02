@@ -14,7 +14,7 @@ import { AccordionModule } from 'primeng/accordion';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ListboxModule } from 'primeng/listbox';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PanelModule } from 'primeng/panel';
 import { MenuModule } from 'primeng/menu';
 import { FieldsetModule } from 'primeng/fieldset';
@@ -29,12 +29,24 @@ import { RadioButtonModule } from 'primeng/radiobutton';
 import { FileUploadModule } from 'primeng/fileupload';
 import { MessagesModule } from 'primeng/messages';
 import { ToastModule } from 'primeng/toast';
+import { NotificationsComponent } from './components/notifications/notifications.component';
+import { SavedFolderComponent } from './components/tab-card/saved-folder/saved-folder.component';
+import { ProjectFolderComponent } from './components/tab-card/project-folder/project-folder.component';
+import { InputTextareaModule } from 'primeng/inputtextarea';
+import { DialogModule } from 'primeng/dialog';
+import { TranslateModule } from '@ngx-translate/core';
+import { StreamAutocompleteTextareaModule, StreamChatModule } from 'stream-chat-angular';
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
+import { DynamicDialogModule } from 'primeng/dynamicdialog';
 @NgModule({
   declarations: [
     PostComponent,
     TabCardComponent,
     InfoCardComponent,
-    InfoComponent
+    InfoComponent,
+    NotificationsComponent,
+    SavedFolderComponent,
+    ProjectFolderComponent,
   ],
   imports: [
     CommonModule,
@@ -62,6 +74,14 @@ import { ToastModule } from 'primeng/toast';
     FileUploadModule,
     MessagesModule,
     ToastModule,
+    InputTextareaModule,
+    DialogModule,
+    ReactiveFormsModule,
+    TranslateModule, 
+    StreamAutocompleteTextareaModule, 
+    StreamChatModule,
+    ProgressSpinnerModule,
+    DynamicDialogModule,
   ],
   exports:[
     PostComponent,
@@ -91,6 +111,18 @@ import { ToastModule } from 'primeng/toast';
     FileUploadModule,
     MessagesModule,
     ToastModule,
+    NotificationsComponent,
+    SavedFolderComponent,
+    ProjectFolderComponent,
+    InputTextareaModule,
+    InfoComponent,
+    DialogModule,
+    ReactiveFormsModule,
+    TranslateModule, 
+    StreamAutocompleteTextareaModule, 
+    StreamChatModule,
+    ProgressSpinnerModule,
+    DynamicDialogModule,
   ]
 })
 export class SharedModule { }

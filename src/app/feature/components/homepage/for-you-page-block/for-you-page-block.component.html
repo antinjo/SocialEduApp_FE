@@ -1,35 +1,38 @@
-<div class="w-full">
-    <div class="w-full">
-        <div>
-            Za tebe (For you page)
-        </div>
-        <div>
-            Preporuceno (Recommended)
+<div class="grid">
+    <div class="col-12">
+        <div class="w-full py-5">
+            <p-accordion [activeIndex]>
+                <p-accordionTab header="Kolegiji">
+                    <div *ngFor ="let subject of subjects?.slice(0,10)">
+                        <a 
+                        [routerLink]="['/subjectpage']" 
+                        [queryParams]="{userName: userEmail,subjectAbbr:subject?.abbreviation}" >
+                        {{subject?.abbreviation}}
+                    </a>
+                        <p-divider></p-divider>
+                    </div>
+                </p-accordionTab>
+                <p-accordionTab header="Studenti">
+                    <div *ngFor ="let user of users?.slice(0,10)">
+                        <a 
+                        [routerLink]="['/userpage']" 
+                        [queryParams]="{userName:user.email}" >
+                        {{user?.firstName +" "+ user?.lastName}}
+                    </a>
+                        <p-divider></p-divider>
+                    </div>
+                </p-accordionTab>
+                <p-accordionTab header="Ustanove">
+                    <div *ngFor ="let institution of institutions?.slice(0,10)">
+                        <a 
+                        [routerLink]="['/fakspage']" 
+                        [queryParams]="{userName: userEmail,institutionAbbr: institution?.abbreviation}" >
+                        {{institution?.abbreviation}}
+                    </a>
+                        <p-divider></p-divider>
+                    </div>
+                </p-accordionTab>
+            </p-accordion>
         </div>
     </div>
-    <div class="card flex justify-content-center w-full">
-    <p-accordion [activeIndex]>
-        <p-accordionTab header="Kolegiji">
-            <!-- <p *ngFor ="let subject of subjects"> -->
-                <!-- <a [routerLink]="['/subjectpage']">{{subject.name}}</a> -->
-                <a [routerLink]="['/subjectpage']">EPIDI</a>
-                <p-divider></p-divider>
-            <!-- </p> -->
-        </p-accordionTab>
-        <p-accordionTab header="Studenti">
-            <!-- <p *ngFor ="let user of users"> -->
-                <!-- <a [routerLink]="['/userpage']">{{user.firstName +" "+ user.lastName}}</a> -->
-                <a [routerLink]="['/userpage']">Luka Mavrić</a>
-                <p-divider></p-divider>
-            <!-- </p> -->
-        </p-accordionTab>
-        <p-accordionTab header="Ustanove">
-            <!-- <p *ngFor ="let institution of institutions"> -->
-                <!-- <a [routerLink]="['/fakspage']">{{institution.name}}</a> -->
-                <a [routerLink]="['/fakspage']">FIDIT</a>
-                <p-divider></p-divider>
-            <!-- </p> -->
-        </p-accordionTab>
-    </p-accordion>
-</div>
 </div>
