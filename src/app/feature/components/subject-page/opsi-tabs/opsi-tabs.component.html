@@ -1,18 +1,26 @@
-<div class="bg-primary h-10rem static"></div>
-<div class="p-5 text-4xl">{{subjectName}}</div>
-<p-tabView>
-    <p-tabPanel header="Informacije">
-            <app-tab-card [tabName]="'Sudionici'"></app-tab-card>
-            <app-subject-info-card></app-subject-info-card>
-    </p-tabPanel>
-    <p-tabPanel header="Projekti">
-        <p>
-            <app-project-tab></app-project-tab>
-        </p>
-    </p-tabPanel>
-    <p-tabPanel header="Forumi">
-        <p>
-            <app-post></app-post>
-        </p>
-    </p-tabPanel>
-</p-tabView>
+<div class="grid justify-content-center">
+    <img src="https://primefaces.org/cdn/primeng/images/galleria/galleria1.jpg" class="h-19rem w-12"/>
+    <div *ngIf="isLoadedSudionici$ | async" class="w-10 col-offset-1 border-left-right">
+        <div class="text-4xl pl-5 py-5 w-12">{{(subjectName$ | async)}}</div>
+        <p-tabView>
+            <p-tabPanel header="Informacije">
+                    <app-tab-card [tabName]="'Sudionici'"></app-tab-card>
+                    <app-subject-info-card></app-subject-info-card>
+            </p-tabPanel>
+            <p-tabPanel header="Projekti">
+                <div>
+                    <app-project-tab></app-project-tab>
+                </div>
+            </p-tabPanel>
+            <p-tabPanel header="Forumi">
+                <div>
+                    <app-forum-tab></app-forum-tab>
+                </div>
+            </p-tabPanel>
+        </p-tabView>
+    </div>
+    <div *ngIf="!(isLoadedSudionici$ | async)" class="flex justify-content-center">
+        <p-progressSpinner></p-progressSpinner>
+    </div>
+</div>
+

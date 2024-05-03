@@ -10,17 +10,17 @@ import { Observable } from 'rxjs';
 })
 export class SubjectInfoCardComponent implements OnInit{
 
-  subjectName:string;
+  subjectDescription:string;
   subjectCreateDate:Date = new Date;
   getMainPersonOfSubject:string;
 
-  @Select(FeatureState.getSubjectName) subjectName$:Observable<string>
+  @Select(FeatureState.getSubjectDescription) subjectDescription$:Observable<string>
   @Select(FeatureState.getCreateDateOfSubject) subjectCreateDate$:Observable<Date>
   @Select(FeatureState.getMainPersonOfSubject) getMainPersonOfSubject$:Observable<string>
 
   ngOnInit(): void {
-      this.subjectName$.subscribe((res) =>{
-        this.subjectName = res
+      this.subjectDescription$.subscribe((res) =>{
+        this.subjectDescription = res
       })
       this.subjectCreateDate$.subscribe((res)=>{
         this.subjectCreateDate = res
