@@ -4,7 +4,7 @@ import { FeatureState } from '../../../../store/feature.store';
 import { Observable } from 'rxjs';
 import { SubjectModel } from '../../../../models/subject.model';
 import { ForumModel } from '../../../../models/forum.model';
-import { GetSubjectInfo, GetSubjectList } from '../../../../store/feature.action';
+import { GetSubjectList } from '../../../../store/feature.action';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -34,16 +34,14 @@ export class ForumTabComponent implements OnInit{
         this.subjectList$.subscribe((res)=>{
           this.id = res.find(item => item.abbreviation === params['subjectAbbr']).id
         })
-      });
-      this.subjectInfo$.subscribe((res)=>{
-        console.warn("forum",res);
-        
-        this.subjectInfo =res
-        if(this.subjectInfo.forums){
-          this.forums = this.subjectInfo.forums
-        } 
+          this.subjectInfo$.subscribe((res)=>{
+            this.subjectInfo =res
+            if(this.subjectInfo.forums){
+              this.forums = this.subjectInfo.forums
+            } 
+          })
       })
-  })
+      });
 
   }
   selectForum(name:string){
