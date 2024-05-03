@@ -28,6 +28,7 @@ import { LocationStrategy, HashLocationStrategy } from '@angular/common';
     NgxsReduxDevtoolsPluginModule,
     NgxsLoggerPluginModule,
     HttpClientModule,
+    CoreModule
   ],
   providers: [
     {provide: LocationStrategy, 

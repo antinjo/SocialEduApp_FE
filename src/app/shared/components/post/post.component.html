@@ -1,30 +1,73 @@
-<p-panel>
-    <ng-template pTemplate="header">
-        <div class="flex align-items-center gap-2">
-            <p-avatar image="https://primefaces.org/cdn/primeng/images/demo/avatar/amyelsner.png" size="large" shape="circle" />
-            <span class="font-bold">Amy Elsner</span>
+<!-- <div class="my-3" *ngFor="let post of posts?.slice(0,10); let i = index"> -->
+    <p-panel>
+        <ng-template class="p-panel-header-reset" pTemplate="header">
+            <div class="grid">
+                <div class="flex align-items-center gap-2 w-12">
+                    <p-avatar image="https://primefaces.org/cdn/primeng/images/demo/avatar/amyelsner.png" size="large" shape="circle" />
+                    <!-- <a (click)="goToPerson(post.userEmail)"><span class="font-bold">{{post?.userFirstName + " " + post?.userLastName}}</span></a> -->
+                </div>
+            </div>
+        </ng-template>
+        <ng-template pTemplate="footer">
+            <div class="grid w-full py-2">
+                <button class="p-button flex align-items-center col-5 p-fluid justify-content-center">Like</button>
+                <button (click)="openComments(i)" class="p-button flex align-items-center col-5 col-offset-2 p-fluid justify-content-center">Komentari</button>
+            </div>
+            <div *ngIf="commentsOpen && i === index">
+                <div *ngFor="let comment of comments" class="flex flex-wrap align-items-center justify-content-between w-full mt-2">
+                    <div class="grid w-full">
+                        <div class="flex align-items-center w-12 mt-1">
+                            <p-panel class="w-full">
+                                <ng-template pTemplate="header">
+                                    <div class="flex align-items-center gap-2">
+                                        <p-avatar image="https://primefaces.org/cdn/primeng/images/demo/avatar/amyelsner.png" size="large" shape="circle" />
+                                        <a (click)="goToPerson(comment.userEmail)"><span class="font-bold">{{comment.userFirstName + ' ' + comment.userLastName}}</span></a>
+                                    </div>
+                                </ng-template>
+                                <p>
+                                    {{comment.text}}
+                                </p>
+                            </p-panel>
+                        </div>
+                    </div>
+                </div>
+                <div class="grid p-5">
+                        <textarea class="w-12 m-3" rows="5" cols="30" pInputTextarea placeholder="Dodaj komentar" [autoResize]="true" [(ngModel)]="value"></textarea>
+                        <button (click)="addComment()" class="p-button justify-content-center w-full">Dodaj komentar</button>
+                </div>
+            </div>
+        </ng-template>
+        <div class="card flex justify-content-center">
+            <div class="grid">
+                <div>
+                    <div class="flex align-items-center w-12">
+                        <!-- <h3>{{post.title}}</h3> -->
+                    </div>
+                    <div class="flex align-items-center w-12 py-1">
+                        <!-- <span>{{post.description}}</span> -->
+                    </div>
+                </div>
+                <div>
+                    <div class="flex align-items-center w-9 py-1 mt-3">
+                        <!-- <span><span class="font-bold">Kolegij:</span> {{post.subjectName}}</span> -->
+                    </div>
+                    <div class="flex align-items-center w-9 py-1">
+                        <!-- <span><span class="font-bold">Naziv projekta:</span> {{post.projectTask.title}}</span> -->
+                    </div>
+                    <div class="flex align-items-center w-12 py-1">
+                        <!-- <span><span class="font-bold">Zadatak:</span> {{post.projectTask.description}}</span> -->
+                    </div>
+                    <div class="grid">
+                        <!-- <img class="w-10 col-offset-1 p-3" *ngIf="post.imageLink != ''" src="{{post.imageLink}}"> -->
+                    </div>
+                    <div class="flex align-items-center w-12 py-1 m-1">
+                        <!-- <a href="{{post.link}}" class="border-round flex justify-content-center my-auto text-center secondary-color-button w-6 col-offset-3"> -->
+                            <div class="secondary-color-button white-text button-github">GitHub Link</div>
+                        <!-- </a> -->
+                    </div>
+                </div>
+            </div>
         </div>
-    </ng-template>
-    <ng-template pTemplate="icons">
-        <p-menu #menu id="config_menu" [model]="items" [popup]="true" />
-    </ng-template>
-    <p class="m-0">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-    </p>
-</p-panel>
-<p-panel>
-    <ng-template pTemplate="header">
-        <div class="flex align-items-center gap-2">
-            <p-avatar image="https://primefaces.org/cdn/primeng/images/demo/avatar/amyelsner.png" size="large" shape="circle" />
-            <span class="font-bold">Amy Elsner</span>
-        </div>
-    </ng-template>
-    <ng-template pTemplate="icons">
-        <p-menu #menu id="config_menu" [model]="items" [popup]="true" />
-    </ng-template>
-    <p class="m-0">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-    </p>
-</p-panel>
+    </p-panel>
+<!-- </div> -->
+

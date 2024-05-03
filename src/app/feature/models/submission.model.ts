@@ -2,7 +2,7 @@ import { ProjectTaksModel } from "./projectTask.model";
 import { SubjectModel } from "./subject.model";
 
 export interface SubmissionModel{
-    id:string,
+    id?:string,
     subjectID:string,
     subject?:SubjectModel,
     subjectName:string,
@@ -14,8 +14,9 @@ export interface SubmissionModel{
     userLastName:string,
     title: string,
     description: string,
-    link:string,
-    imageLink:string,
-    grade: string,
+    link?:string,
+    imageLink?:string,
+    grade?: number,
+    criteria?:string,
     uploadDate:Date
 }

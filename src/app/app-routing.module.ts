@@ -27,6 +27,9 @@ const routes: Routes = [
     path: 'userpage', 
     component:UserPageComponent},
   {
+      path: 'userpage/:name', 
+      component:UserPageComponent},
+  {
     path: 'subjectpage', 
     component:SubjectPageComponent},
 ];

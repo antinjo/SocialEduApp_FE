@@ -3,5 +3,34 @@
 a{
     text-decoration: none;
     cursor: pointer;
+}
+body{
+    margin:0 !important;
+}
+
+.secondary-color-button{
+    background-color: #8BB3CD;
+    border-color: #8BB3CD;
+}
+.white-text{
+    color: var(--primary-color-text);
+}
+.border-left-right{
+    border-left: 1px solid #6D898A;
+    border-right: 1px solid #6D898A;
+}
+a{
     color:#000000;
+}
+body,
+body .p-component
+{
+  font-family: "Raleway", sans-serif;
+}
+.button-github{
+    margin-block-start: 0.83em;
+    margin-block-end: 0.83em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    font-size: 1.125em
 }

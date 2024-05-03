@@ -1,11 +1,11 @@
 import {
   Paginator,
   PaginatorModule
-} from "./chunk-K4JRWY3K.js";
+} from "./chunk-MV4SM26X.js";
 import "./chunk-NGGXD5FS.js";
 import "./chunk-3YYAD4SB.js";
-import "./chunk-V6YNFWAG.js";
 import "./chunk-DDI35TOV.js";
+import "./chunk-V6YNFWAG.js";
 import "./chunk-EKVZB24P.js";
 import "./chunk-IBDZZGXJ.js";
 import {
@@ -27,8 +27,8 @@ import {
   TranslationKeys,
   UniqueComponentId
 } from "./chunk-BKZZUF5V.js";
-import "./chunk-H47CQ2EN.js";
 import "./chunk-B6COAR6O.js";
+import "./chunk-H47CQ2EN.js";
 import {
   CommonModule,
   NgClass,

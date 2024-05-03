@@ -1,11 +1,15 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { EventEmitter, Injectable, Output } from '@angular/core';
 import { Observable } from 'rxjs';
 import { SavedUserModel } from '../models/savedUsers.model';
 import { UserModel } from '../models/user.model';
 import { SubjectModel } from '../models/subject.model';
 import { SubmissionFolderModel } from '../models/submissionFolder.model';
 import { InstitutionsModel } from '../models/institution.model';
+import { PostModel } from '../models/post.model';
+import { environment } from '../../../environments/environment';
+import { SubmissionModel } from '../models/submission.model';
+import { ProjectTaksModel } from '../models/projectTask.model';
 
 @Injectable({
   providedIn: 'root'
@@ -15,28 +19,55 @@ export class HomepageService {
 
   constructor(private http:HttpClient) { }
 
-  getUserInfo():Observable<UserModel>{
-    return this.http.get<UserModel>("https://localhost:7107/api/Users/prof@gmaill.com")
+  @Output() toggleEvent = new EventEmitter<boolean>()
+
+  toggleClicked(bool:boolean){
+    this.toggleEvent.emit(bool)
   }
-  getSavedUsersInfo():Observable<SavedUserModel>{
-    return this.http.get<SavedUserModel>("https://localhost:7107/api/SavedUsersFolders/1")
+
+  getUserInfo(userEmail:string):Observable<UserModel>{
+    return this.http.get<UserModel>(environment.link +"/api/Users/"+ userEmail)
   }
-  getSubjectForUser():Observable<SubjectModel[]>{
-    return this.http.get<SubjectModel[]>("https://localhost:7107/api/subjects/foruser/student@gmaill.com")
+  getSavedUsersInfo(id:string):Observable<SavedUserModel>{
+    return this.http.get<SavedUserModel>(environment.link +"/api/SavedUsersFolders/"+ id)
   }
-  getSavedFoldersByUser():Observable<SavedUserModel[]>{
-    return this.http.get<SavedUserModel[]>("https://localhost:7107/api/SavedUsersFolders/foruser/student@gmaill.com")
+  getSubjectForUser(email:string):Observable<SubjectModel[]>{
+    return this.http.get<SubjectModel[]>(environment.link +"/api/subjects/foruser/" + email)
   }
-  getSubmissionsFolders():Observable<SubmissionFolderModel[]>{
-    return this.http.get<SubmissionFolderModel[]>("https://localhost:7107/api/submissionsfolders/foruser/student@gmaill.com")
+  getSavedFoldersByUser(userEmail:string):Observable<SavedUserModel[]>{
+    return this.http.get<SavedUserModel[]>(environment.link +"/api/SavedUsersFolders/foruser/"+userEmail)
   }
-  getInstitutions():Observable<InstitutionsModel>{
-    return this.http.get<InstitutionsModel>("https://localhost:7107/api/institutions/1")
+  getSavedFolder(id:string):Observable<SavedUserModel>{
+    return this.http.get<SavedUserModel>(environment.link +"/api/SavedUsersFolders/"+ id)
   }
-  getInstitutionSubject():Observable<SubjectModel[]>{
-    return this.http.get<SubjectModel[]>("https://localhost:7107/api/subjects/forinstitution/1")
+  getSubmissionsFolders(userEmail:string):Observable<SubmissionFolderModel[]>{
+    return this.http.get<SubmissionFolderModel[]>(environment.link +"/api/submissionsfolders/foruser/"+userEmail)
   }
-  getSubjectInfo():Observable<SubjectModel>{
-    return this.http.get<SubjectModel>("https://localhost:7107/api/subjects/1")
+  getSubmissionFolder(id:string):Observable<SubmissionFolderModel>{
+    return this.http.get<SubmissionFolderModel>(environment.link +"/api/submissionsfolders/"+id)
+  }
+  getInstitutions():Observable<InstitutionsModel[]>{
+    return this.http.get<InstitutionsModel[]>(environment.link +"/api/institutions")
+  }
+    getInstitution(id:string):Observable<InstitutionsModel>{
+    return this.http.get<InstitutionsModel>(environment.link +"/api/institutions/"+ id)
+  }
+  getInstitutionSubject(id:string):Observable<SubjectModel[]>{
+    return this.http.get<SubjectModel[]>(environment.link +"/api/subjects/forinstitution/"+ id)
+  }
+  getSubjectList():Observable<SubjectModel[]>{
+    return this.http.get<SubjectModel[]>(environment.link +"/api/subjects")
+  }
+  getSubjectInfo(id:string):Observable<SubjectModel>{
+    return this.http.get<SubjectModel>(environment.link +"/api/subjects/" + id)
+  }
+  getPosts(email:string):Observable<PostModel[]>{
+    return this.http.get<PostModel[]>(environment.link +"/api/Home/"+email)
+  }
+  postSubjectProject(newSubmission:SubmissionModel):Observable<SubmissionModel>{
+    return this.http.post<SubmissionModel>(environment.link +"/api/projectsubmissions",newSubmission)
+  }
+  addProjectTask(newProjectTaks:ProjectTaksModel):Observable<ProjectTaksModel>{
+    return this.http.post<ProjectTaksModel>(environment.link +"/api/projecttasks",newProjectTaks)
   }
 }

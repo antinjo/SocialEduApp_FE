@@ -18,7 +18,6 @@ import { SubjectInfoCardComponent } from './components/subject-page/opsi-tabs/su
 import { ProjectTabComponent } from './components/subject-page/opsi-tabs/project-tab/project-tab.component';
 
 
-
 @NgModule({
   declarations: [
     HomepageComponent,
@@ -54,7 +53,7 @@ import { ProjectTabComponent } from './components/subject-page/opsi-tabs/project
     SubjectPageComponent,
     OpsiTabsComponent,
     SubjectInfoCardComponent,
-    ProjectTabComponent
+    ProjectTabComponent,
   ]
 })
-export class FeatureModule { }
+export class FeatureModule {}
