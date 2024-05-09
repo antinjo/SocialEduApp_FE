@@ -1,0 +1,25 @@
+<p-panel>
+    <ng-template pTemplate="header">
+        <div class="flex align-items-center gap-2">
+            <span class="font-bold">{{tabName}}</span>
+        </div>
+    </ng-template>
+    <ng-template pTemplate="icons">
+        <a (click)="goBack()" class="p-panel-header-icon p-link mr-2">
+            <span class="pi pi-arrow-left"></span>
+        </a>
+    </ng-template>
+    <div *ngFor="let post of forumPosts">
+        <p-panel>
+            <ng-template pTemplate="header">
+                <div class="flex align-items-center gap-2">
+                    <p-avatar image="https://primefaces.org/cdn/primeng/images/demo/avatar/amyelsner.png" size="large" shape="circle" />
+                    <span class="font-bold">{{post.userFirstName + " " + post.userLastName}}</span>
+                </div>
+            </ng-template>
+            <p class="m-0">
+                {{post.content}}
+            </p>
+        </p-panel>
+    </div>
+</p-panel>

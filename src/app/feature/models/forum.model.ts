@@ -7,5 +7,5 @@ export interface ForumModel{
     name:string,
     description:string,
     createdDate: Date,
-    forumPost:ForumPostModel[]
+    forumPosts:ForumPostModel[]
 }

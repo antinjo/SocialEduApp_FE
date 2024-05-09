@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Select } from '@ngxs/store';
+import { Select, Store } from '@ngxs/store';
 import { FeatureState } from '../../../store/feature.store';
 import { Observable } from 'rxjs';
 @Component({
@@ -11,14 +11,16 @@ export class OpsiTabsComponent implements OnInit{
 
   subjectName:string =""
 
-  constructor(){}
+  constructor(private store:Store){}
 
   @Select(FeatureState.getSubjectName) subjectName$:Observable<string>
-
+  @Select(FeatureState.isLoadedSudionici) isLoadedSudionici$:Observable<boolean>
 
   ngOnInit(): void {
       this.subjectName$.subscribe((res) =>{
-        this.subjectName =res
+        if(this.subjectName === res){
+          this.subjectName = res
+        }
       })
   }
 }
