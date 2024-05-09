@@ -1,30 +1,102 @@
+<button class="p-button bg-nutton w-1 col-offset-11 justify-content-center mb-3 p-3" (click)="openProjectTaskAdd()">+</button>
 <div class="card flex justify-content-center">
-    <div *ngFor="let tasks of projectTasks">
-        <p-panel header="{{tasks.title}}">
+    <p-dialog header="Dodaj novi zadatak" [(visible)]="visiblePT" [modal]="true" [style]="{ width: '75vw' }" [draggable]="false" [resizable]="false">
+        <p-card>
+            <form [formGroup]="projectTaskForm" (ngSubmit)="onSubmit()">
+                <div class="grid">
+                    <div class="p-2 w-12">
+                        <div class="grid">
+                            <label class="w-3" for="title">Naziv projekta:</label>
+                            <input class="w-9" type="text" id="title" name="title" formControlName="title">
+                        </div>
+                    </div>
+                    <div class="p-2 w-12">
+                        <div class="grid">
+                            <label class="w-3" for="description">Opis: </label>
+                            <input class="w-9" type="text" id="description" name="description" formControlName="description">
+                        </div>
+                    </div>
+                    <div class="p-2 w-12">
+                        <div class="grid">
+                            <label class="w-3" for="criteria">Kriteriji: </label>
+                            <input class="w-9" type="text" id="criteria" name="criteria" formControlName="criteria">
+                        </div>
+                    </div>
+                    <div class="p-2 w-12">
+                        <div class="grid">
+                            <label class="w-3" for="maxGrade">Bodovi: </label>
+                            <input class="w-9" type="text" id="maxGrade" name="maxGrade" formControlName="maxGrade">
+                        </div>
+                    </div>
+                </div>
+                <button class="p-button w-4 col-offset-4 justify-content-center" (click)="onSubmitPT()" type="submit">Pošalji</button>
+            </form>
+        </p-card>
+    </p-dialog>
+</div>
+<div *ngIf="!projectFolderOpen" class="card flex flex-column justify-content-center">
+    <div class="card flex flex-column justify-content-center" *ngFor="let tasks of projectTasks">
+        <p-panel header="{{tasks.title}}" class="w-12" [toggleable]="true">
             <div>
                 <h2>Opis</h2>
                 <p>
                     {{tasks.description}}
                 </p>
-                <!-- TODO add correct routing -->
-                <p-divider></p-divider>
-                <p class="flex justify-content-center">
-                    <a class="border-round flex justify-content-center my-auto text-center w-5 bg-primary" [routerLink]="['/']">
-                                <h2 class="bg-primary">Projekti studenata</h2>
-                    </a>
+                <h2>Kriterij</h2>
+                <p>
+                    {{tasks.criteria}}
                 </p>
                 <p-divider></p-divider>
-                <div class="card flex justify-content-center">
-                    <p-toast></p-toast>
-                    <p-fileUpload name="demo[]" url="https://www.primefaces.org/cdn/api/upload.php" (onUpload)="onUpload($event)" [multiple]="true" maxFileSize="1000000">
-                        <ng-template pTemplate="content">
-                            <ul *ngIf="uploadedFiles.length">
-                                <li *ngFor="let file of uploadedFiles">{{ file.name }} - {{ file.size }} bytes</li>
-                            </ul>
-                        </ng-template>
-                    </p-fileUpload>
+                <div class="grid">
+                    <div class="w-6 mt-2">
+                        <a (click)="onOpenProjectFolder(tasks.title)" class="border-round flex justify-content-center my-auto text-center w-11 bg-primary">
+                                    <div class="bg-primary white-text button-github">Projekti studenata</div>
+                        </a>
+                    </div>
+                    <div class="w-6 mt-2">
+                        <a (click)="showDialog()" class="border-round flex justify-content-center my-auto text-center w-11 secondary-color-button" icon="pi pi-external-link" label="Show">
+                            <div class="secondary-color-button white-text button-github">Upload</div>
+                        </a>
+                    </div>
+                    <div class="w-6">
+                            <div class="card flex justify-content-center">
+                                <p-dialog header="Upload projekta" [(visible)]="visible" [modal]="true" [style]="{ width: '75vw' }" [draggable]="false" [resizable]="false">
+                                            <p-card>
+                                                <form [formGroup]="projectForm" (ngSubmit)="onSubmit()">
+                                                    <div class="grid">
+                                                        <div class="p-2 w-12">
+                                                            <div class="grid">
+                                                                <label class="w-3" for="title">Naziv projekta:</label>
+                                                                <input class="w-9" type="text" id="title" name="title" formControlName="title">
+                                                            </div>
+                                                        </div>
+                                                        <div class="p-2 w-12">
+                                                            <div class="grid">
+                                                                <label class="w-3" for="description">Opis: </label>
+                                                                <input class="w-9" type="text" id="description" name="description" formControlName="description">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <button class="p-button w-4 col-offset-4 justify-content-center" (click)="onSubmit()" type="submit">Pošalji</button>
+                                                </form>
+                                                <p-fileUpload class="justify-content-center p-3" name="demo[]" url="https://www.primefaces.org/cdn/api/upload.php" (onUpload)="onUpload($event)" [multiple]="true" maxFileSize="1000000">
+                                                    <ng-template pTemplate="content">
+                                                        <ul *ngIf="uploadedFiles.length">
+                                                            <li *ngFor="let file of uploadedFiles">{{ file.name }} - {{ file.size }} bytes</li>
+                                                        </ul>
+                                                    </ng-template>
+                                                </p-fileUpload>
+                                            </p-card>
+                                </p-dialog>
+
+                            </div>
+                        <p-toast></p-toast>
+                    </div>
                 </div>
             </div>
         </p-panel>
     </div>
+</div>
+<div *ngIf="projectFolderOpen">
+    <app-project-folder [tabName]="folderName" [subjectProject]="'true'" (goBackFolder)="onGoBackFromProject($event)"></app-project-folder>
 </div>

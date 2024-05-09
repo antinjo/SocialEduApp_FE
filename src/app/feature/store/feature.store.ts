@@ -211,7 +211,7 @@ interface FeatureStateModel{
                 name:"",
                 description:"",
                 createdDate: new Date,
-                forumPost:[],
+                forumPosts:[],
             }],
             projectTasks:[{
                 id:"",
@@ -270,7 +270,7 @@ interface FeatureStateModel{
                 name:"",
                 description:"",
                 createdDate: new Date,
-                forumPost:[],
+                forumPosts:[],
             }],
             projectTasks:[{
                 id:"",
@@ -434,7 +434,7 @@ interface FeatureStateModel{
             name:"",
             description:"",
             createdDate: new Date,
-            forumPost:[{
+            forumPosts:[{
                 id:"",
                 forumID:"",
                 forum:"",
@@ -681,7 +681,7 @@ export class FeatureState{
         )
     }
     @Action(GetSubjectInfo)
-    getSubjectInfo(ctx:StateContext<FeatureStateModel>, action:GetInstitution){
+    getSubjectInfo(ctx:StateContext<FeatureStateModel>, action:GetSubjectInfo){
         const state = ctx.getState();
         state.isLoadedSudionici = false
         const id:string = action.payload

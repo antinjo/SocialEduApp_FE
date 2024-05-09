@@ -1,0 +1,14 @@
+<div *ngIf="!openForum">
+    <div *ngFor="let forum of forums">
+        <div class="grid">
+            <p class="col-12 bg-button border-round p-3">
+                <a (click)="selectForum(forum.name)">
+                    <h2>{{forum.name}}</h2>
+                </a>
+            </p>
+        </div>
+    </div>
+</div>
+<div *ngIf="openForum">
+    <app-forum [tabName]="forumName" (goBackFolder)="onGoBack($event)"></app-forum>
+</div>
