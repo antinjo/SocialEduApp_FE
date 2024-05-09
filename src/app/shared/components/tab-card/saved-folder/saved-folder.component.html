@@ -1,0 +1,42 @@
+<div *ngIf="isLoadedSaved$ | async">
+<p-panel header="{{tabName}}">
+        <ng-template pTemplate="icons">
+            <a (click)="goBack()" class="p-panel-header-icon p-link mr-2">
+                <span class="pi pi-arrow-left"></span>
+            </a>
+        </ng-template>
+        <div>    
+            <div *ngIf="show===false">
+                <div class="grid">
+                    <div class="col-5 ml-5 mb-3" *ngFor="let user of userList.slice(0,20)">
+                        <a [routerLink]="['/userpage']" [queryParams]="{userName:user.email}" (click)="goBack()">
+                            <div class="grid text-center align-items-center p-3 border-round-sm bg-button-revers font-bold">
+                                <p-avatar class="w-2" image="https://primefaces.org/cdn/primeng/images/demo/avatar/amyelsner.png" size="large" shape="circle" />
+                                <div class="w-10">{{user.firstName + " " + user.lastName}}</div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div *ngIf="show===true">
+                <div class="grid">
+                    <div class="col-5 ml-5 mb-3" *ngFor="let user of userList.slice(first,pageCount)">
+                        <a [routerLink]="['/userpage']" [queryParams]="{userName:user.email}" (click)="goBack()">
+                            <div class="grid text-center align-items-center p-3 border-round-sm bg-button-revers font-bold">
+                                <p-avatar class="w-2" image="https://primefaces.org/cdn/primeng/images/demo/avatar/amyelsner.png" size="large" shape="circle" />
+                                <div class="w-10">{{user.firstName + " " + user.lastName}}</div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <p-paginator (onPageChange)="onPageChange($event)" [first]="first" [rows]="rows" [totalRecords]="folderLength"></p-paginator>
+            </div>
+            <div *ngIf="folderLength>6">
+                <button class="p-fluid w-full p-button justify-content-center" (click)="show = !show">{{ show ? 'Prikaži manje': 'Prikaži više' }}</button>
+            </div> 
+        </div>
+</p-panel>
+</div>
+<div *ngIf="!(isLoadedSaved$ | async)" class=" flex justify-content-center">
+    <p-progressSpinner></p-progressSpinner>
+</div>

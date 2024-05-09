@@ -1,24 +1,26 @@
-<div class="card flex">
-    <div class="card flex justify-content-center">
-        <div class="flex flex-column gap-3">
+<div class="grid">
+    <div class="card flex justify-content-center w-3">
+        <div class="flex flex-column gap-3 w-12">
             <button (click)="openTab('OP')" class="w-full text-center p-button justify-content-center">Općenito</button>
             <button (click)="openTab('OB')" class="w-full text-center p-button justify-content-center">Obrazovanje</button>
+            <button (click)="openTab('INSTI')" class="w-full text-center p-button justify-content-center">Institucije</button>
             <button (click)="openTab('IN')" class="w-full text-center p-button justify-content-center">Interesi</button>
             <button (click)="openTab('RI')" class="w-full text-center p-button justify-content-center">Radno iskustvo</button>
         </div>
     </div>
     <p-divider layout="vertical"></p-divider>
         <div *ngIf="opcenitoLoaded===true">
-            <div  *ngFor="let _ of [].constructor(3)">
-                <p>
-                    <span class="pi pi-star-fill"> TODO</span>
-                </p>
-            </div>
+                <div>
+                    <p><span class="pi pi-star-fill"> Mjesto: {{location}}</span></p>
+                    <p><span class="pi pi-star-fill"> Spol: {{gender}}</span></p>
+                    <p><span class="pi pi-star-fill"> Datum rodenja: {{dateOfBirth | date}}</span></p>
+                    <p><span class="pi pi-star-fill"> Datum registracije: {{joinedDate | date}}</span></p>
+                </div>
         </div>
         <div *ngIf="obrazovanjeLoaded===true">
             <div *ngFor="let ed of education">
                 <p>
-                    <span class="pi pi-file-edit"> {{ed}} TODO</span>
+                    <span class="pi pi-file-edit"> {{ed}}</span>
                 </p>
             </div>
         </div>
@@ -35,5 +37,12 @@
                     <span class="pi pi-heart-fill"> {{int}}</span>
                 </p>
             </div>
-        <div> 
+        </div>
+            <div *ngIf="institucijeLoaded===true">
+                <div *ngFor="let insti of institutions">
+                    <p>
+                        <span class="pi pi-building"> {{insti.name}}</span>
+                    </p>
+                </div>
+            </div> 
 </div>

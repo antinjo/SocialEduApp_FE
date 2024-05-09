@@ -38,6 +38,8 @@ import { ForumComponent } from './components/subject-page/opsi-tabs/forum-tab/fo
     ProjectTabComponent,
     ForumTabComponent,
     ForumComponent,
+    ForumTabComponent,
+    ForumComponent,
   ],
   imports: [
     CommonModule,
@@ -58,6 +60,8 @@ import { ForumComponent } from './components/subject-page/opsi-tabs/forum-tab/fo
     OpsiTabsComponent,
     SubjectInfoCardComponent,
     ProjectTabComponent,
+    ForumTabComponent,
+    ForumComponent,
     ForumTabComponent,
     ForumComponent,
   ]

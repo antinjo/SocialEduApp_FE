@@ -43,6 +43,7 @@ export class HeaderComponent implements OnInit{
         if(!(this.loggedInUser)){
           this.loggedInUser = params['userName']
         }
+        if(this.isloggedIn){
           this.store.dispatch(new GetUserInfo(params['userName'])).subscribe(()=>{
             this.getUserInfo$.subscribe((res)=>{
               if(res.email===this.loggedInUser){
@@ -54,6 +55,7 @@ export class HeaderComponent implements OnInit{
 
             })
           })
+        }
       }
     );
       this.toggle= false

@@ -4,6 +4,7 @@ import { FeatureState } from '../../../store/feature.store';
 import { Observable } from 'rxjs';
 import { UserModel } from '../../../models/user.model';
 import { GetSubmissionsFolder, GetUserInfo } from '../../../store/feature.action';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-profile',
@@ -12,18 +13,25 @@ import { GetSubmissionsFolder, GetUserInfo } from '../../../store/feature.action
 })
 export class ProfileComponent implements OnInit{
 
-constructor(private store: Store){}
-//todo: change type when BE is ready
-user:any;
+constructor(
+  private store: Store,
+  private route:ActivatedRoute
+  ){}
+  user:UserModel;
 
 @Select(FeatureState.getUserInfo) user$:Observable<UserModel>
+@Select(FeatureState.isLoadedUserPage) isLoadedUserPage$:Observable<UserModel>
+
 
 ngOnInit(): void {
-  // this.store.dispatch(new GetUserInfo())
-  // this.store.dispatch(new GetSubmissionsFolder())
-  //   this.user$.subscribe((res)=>{
-  //     this.user = res
-  //   })
+  this.route.queryParams
+  .subscribe(params => {
+    this.store.dispatch(new GetUserInfo(params['userName'])).subscribe(()=>{
+      this.store.dispatch(new GetSubmissionsFolder(params['userName']))
+      this.user$.subscribe((res)=>{
+        this.user = res
+      })
+    })
+  });
 }
-
 }

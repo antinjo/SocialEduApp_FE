@@ -1,6 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
-import * as Sub from '../../../../assets/submissionConfig.json'
-import * as Pro from '../../../../assets/projectConfig.json'
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { SavedUserModel } from '../../../feature/models/savedUsers.model';
 import { SubmissionFolderModel } from '../../../feature/models/submissionFolder.model';
 import { Select } from '@ngxs/store';
@@ -8,12 +6,8 @@ import { Observable } from 'rxjs';
 import { FeatureState } from '../../../feature/store/feature.store';
 import { InstitutionsModel } from '../../../feature/models/institution.model';
 import { SubjectModel } from '../../../feature/models/subject.model';
-interface PageEvent {
-    first: number;
-    rows: number;
-    page: number;
-    pageCount: number;
-  }
+import { PageEvent } from '../../../feature/models/pageEvent.model';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-tab-card',
@@ -23,34 +17,54 @@ interface PageEvent {
 export class TabCardComponent implements OnInit{
 
     @Input() tabName = ''
+    @Output() openSavedFolder = new EventEmitter<boolean>()
+    @Output() nameoOfFolder = new EventEmitter<string>()
+    @Output() openProjectFolder = new EventEmitter<boolean>()
+    @Output() nameoOfProjectFolder = new EventEmitter<string>()
+    
     show:boolean = false;
     pageCount: number;
     folderLength:number;
     first: number = 0;
     rows: number = 6;
-    res2: SubmissionFolderModel[];
-    res1: SavedUserModel[];
+    savedUsersFolder:SavedUserModel[];
     folderInfo:any;
     submissionFolder:SubmissionFolderModel[];
     institution: InstitutionsModel;
     institutionSubject: SubjectModel[];
     subjectInfo:SubjectModel;
+    loggedInUser:string;
 
-    @Select(FeatureState.getSubjectForUser) folders$:Observable<SavedUserModel[]>
+    constructor(private route:ActivatedRoute){}
+
+    @Select(FeatureState.getSubjectForUser) folders$:Observable<SubjectModel[]>
     @Select(FeatureState.getSubmissionsFolder) submissionFolder$:Observable<SubmissionFolderModel[]>
-    @Select(FeatureState.getInstitutions) institution$:Observable<InstitutionsModel>
+    @Select(FeatureState.getInstitution) institution$:Observable<InstitutionsModel>
     @Select(FeatureState.getSubjectForInstitutions) institutionSubject$:Observable<SubjectModel[]>
     @Select(FeatureState.getSubjectInfo) subjectInfo$:Observable<SubjectModel>
+    @Select(FeatureState.getSavedUsersFolder) savedUsersFolder$:Observable<SavedUserModel[]>
+    @Select(FeatureState.isLoadedSaved) isLoadedSaved$:Observable<boolean>
+    @Select(FeatureState.isLoadedProjects) isLoadedProjects$:Observable<boolean>
+    @Select(FeatureState.isLoadedStudenti) isLoadedStudenti$:Observable<boolean>
+    @Select(FeatureState.isLoadedSudionici) isLoadedSudionici$:Observable<boolean>
+    @Select(FeatureState.isLoadedSubject) isLoadedSubject$:Observable<boolean>
+
 
     ngOnInit(): void {
-        this.res2 = (Sub as any).default;
-        this.res1 = (Pro as any).default;
+      this.route.queryParams
+      .subscribe(params => {
+        this.loggedInUser = params['userName']
+      })
         if(this.tabName === 'Saved'){
-            this.folderInfo = this.res1
-            this.folderLength = this.folderInfo.length
+            this.savedUsersFolder$.subscribe((res)=>{
+              this.folderInfo = res
+              this.folderLength = this.folderInfo.length
+            })
         }else if (this.tabName ==='Projekti'){
-            this.folderInfo = this.res2
+          this.submissionFolder$.subscribe((res) =>{
+            this.folderInfo = res
             this.folderLength = this.folderInfo.length
+          })
         }else if(this.tabName === 'Studenti'){
           this.institution$.subscribe((res)=>{
             this.institution = res
@@ -73,15 +87,21 @@ export class TabCardComponent implements OnInit{
         this.submissionFolder$.subscribe((res)=>{
           this.submissionFolder = res
         })
-        //TODO
-          this.folders$.subscribe((res)=>{
-            //this.folders = res
-           //this.folderLengthF=this.folders.length
-      })
     }
+    
   onPageChange(event: PageEvent) {
     this.first = event.first;
     this.rows = event.rows;
     this.pageCount = this.first + this.rows
+  }
+
+  onOpenSavedFolder(name:string){
+    this.openSavedFolder.emit(false)
+    this.nameoOfFolder.emit(name)
+  }
+
+  onOpenProjectFolder(name:string){
+    this.openProjectFolder.emit(false)
+    this.nameoOfProjectFolder.emit(name)
   }
 }
