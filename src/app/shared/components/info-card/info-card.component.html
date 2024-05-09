@@ -1,12 +1,19 @@
-<app-tab-card [tabName]="'Saved'"></app-tab-card>
-<div class="pt-5">
-    <app-tab-card [tabName]="'Projekti'"></app-tab-card>
+<div *ngIf="(openSavedFolder || !openProjectFolder) && (!openSavedFolder || openProjectFolder)">
+    <app-tab-card [tabName]="'Saved'"(openSavedFolder)=onTrigger($event) (nameoOfFolder)="onTriggerName($event)"></app-tab-card>
+    <div class="pt-5">
+        <app-tab-card [tabName]="'Projekti'" (openProjectFolder)=onTriggerFolder($event) (nameoOfProjectFolder)="onTriggerProjectName($event)"></app-tab-card>
+    </div>
+    <div class="pt-5">
+        <p-panel header="Informacije">
+            <p>
+                <app-info></app-info> 
+            </p>
+        </p-panel>
+    </div>
 </div>
-<div class="pt-5">
-    <p-panel header="Informacije">
-        <p>
-            <app-info></app-info> 
-        </p>
-    </p-panel>
+<div *ngIf="!openSavedFolder && !!openProjectFolder">
+    <app-saved-folder [tabName]="folderName" (goBackFolder)="onGoBack($event)"></app-saved-folder>
 </div>
-
+<div *ngIf="!openProjectFolder && !!openSavedFolder">
+    <app-project-folder [tabName]="folderName" (goBackFolder)="onGoBackFromProject($event)"></app-project-folder>
+</div>

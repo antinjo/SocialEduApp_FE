@@ -10,6 +10,7 @@ import { PostModel } from '../models/post.model';
 import { environment } from '../../../environments/environment';
 import { SubmissionModel } from '../models/submission.model';
 import { ProjectTaksModel } from '../models/projectTask.model';
+import { ChatMessageModel } from '../models/chatMsg.model';
 
 @Injectable({
   providedIn: 'root'
@@ -69,5 +70,8 @@ export class HomepageService {
   }
   addProjectTask(newProjectTaks:ProjectTaksModel):Observable<ProjectTaksModel>{
     return this.http.post<ProjectTaksModel>(environment.link +"/api/projecttasks",newProjectTaks)
+  }
+  getChatMsg(email:string):Observable<ChatMessageModel[]>{
+    return this.http.get<ChatMessageModel[]>(environment.link +"/api/chats/foruser/"+email)
   }
 }

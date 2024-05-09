@@ -27,10 +27,11 @@ import { SubmissionFolderModel } from "../models/submissionFolder.model";
 import { InstitutionsModel } from "../models/institution.model";
 import { NotificationModel } from "../models/notification.model";
 import { PostModel } from "../models/post.model";
+import { CommentModel } from "../models/comment.model";
 import { SubmissionModel } from "../models/submission.model";
 import { ForumModel } from "../models/forum.model";
 import { ProjectTaksModel } from "../models/projectTask.model";
-import { CommentModel } from "../models/comment.model";
+import { ChatMessageModel } from "../models/chatMsg.model";
 
 interface FeatureStateModel{
     user:UserModel;
@@ -51,6 +52,7 @@ interface FeatureStateModel{
     submissionsForSubject:ProjectTaksModel[];
     forumPosts:ForumModel[];
     loggedInUserId:string,
+    chats:ChatMessageModel[];
     isLoggedIn:boolean;
     isLoadedUserPage:boolean;
     isLoadedHomePage:boolean;
@@ -65,7 +67,7 @@ interface FeatureStateModel{
     name:"featureStateModel",
     defaults:{
         isLoadedUserPage:true,
-        isLoggedIn:true,
+        isLoggedIn:false,
         isLoadedHomePage:true,
         isLoadedSaved:true,
         isLoadedStudenti:true,
@@ -211,7 +213,7 @@ interface FeatureStateModel{
                 name:"",
                 description:"",
                 createdDate: new Date,
-                forumPost:[],
+                forumPosts:[],
             }],
             projectTasks:[{
                 id:"",
@@ -270,7 +272,7 @@ interface FeatureStateModel{
                 name:"",
                 description:"",
                 createdDate: new Date,
-                forumPost:[],
+                forumPosts:[],
             }],
             projectTasks:[{
                 id:"",
@@ -434,7 +436,7 @@ interface FeatureStateModel{
             name:"",
             description:"",
             createdDate: new Date,
-            forumPost:[{
+            forumPosts:[{
                 id:"",
                 forumID:"",
                 forum:"",
@@ -446,6 +448,13 @@ interface FeatureStateModel{
                 content:"",
                 createdDate:new Date
             }]
+        }],
+        chats:[{
+            firstName: "",
+            lastName: "",
+            email: "",
+            image: "",
+            messages: []
         }]
     }
 })
@@ -537,6 +546,10 @@ export class FeatureState{
     @Selector()
     static getForumPosts(state:FeatureStateModel){
         return state.forumPosts
+    }
+    @Selector()
+    static getChats(state:FeatureStateModel){
+        return state.chats
     }
     @Selector()
     static getIsLoggedIn(state:FeatureStateModel){
@@ -739,6 +752,18 @@ export class FeatureState{
             tap((res)=>{
                 ctx.patchState({
                     submissions:res.submissions
+                })
+            })
+        )
+    }
+    @Action(GetChatMessage)
+    getChatMessage(ctx:StateContext<FeatureStateModel>,action:GetChatMessage){
+        const state = ctx.getState();
+        const email:string = action.payload
+        return this.homepageService.getChatMsg(email).pipe(
+            tap((res)=>{
+                ctx.patchState({
+                    chats:res
                 })
             })
         )

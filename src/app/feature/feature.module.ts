@@ -16,7 +16,8 @@ import { SubjectPageComponent } from './components/subject-page/subject-page.com
 import { OpsiTabsComponent } from './components/subject-page/opsi-tabs/opsi-tabs.component';
 import { SubjectInfoCardComponent } from './components/subject-page/opsi-tabs/subject-info-card/subject-info-card.component';
 import { ProjectTabComponent } from './components/subject-page/opsi-tabs/project-tab/project-tab.component';
-
+import { ForumTabComponent } from './components/subject-page/opsi-tabs/forum-tab/forum-tab.component';
+import { ForumComponent } from './components/subject-page/opsi-tabs/forum-tab/forum/forum.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,8 @@ import { ProjectTabComponent } from './components/subject-page/opsi-tabs/project
     OpsiTabsComponent,
     SubjectInfoCardComponent,
     ProjectTabComponent,
+    ForumTabComponent,
+    ForumComponent,
   ],
   imports: [
     CommonModule,
@@ -54,6 +57,8 @@ import { ProjectTabComponent } from './components/subject-page/opsi-tabs/project
     OpsiTabsComponent,
     SubjectInfoCardComponent,
     ProjectTabComponent,
+    ForumTabComponent,
+    ForumComponent,
   ]
 })
 export class FeatureModule {}

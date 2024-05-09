@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { Store } from '@ngxs/store';
-import { GetSubjectInfo, GetSubmissionsFolder } from '../../store/feature.action';
+import { Select, Store } from '@ngxs/store';
+import { GetSubjectInfo, GetSubjectList} from '../../store/feature.action';
+import { ActivatedRoute } from '@angular/router';
+import { FeatureState } from '../../store/feature.store';
+import { Observable } from 'rxjs';
+import { SubjectModel } from '../../models/subject.model';
 
 @Component({
   selector: 'app-subject-page',
@@ -9,11 +13,23 @@ import { GetSubjectInfo, GetSubmissionsFolder } from '../../store/feature.action
 })
 export class SubjectPageComponent implements OnInit {
 
-  constructor(private store:Store){}
+  id:string;
 
+  @Select(FeatureState.getSubjectList) subjectList$:Observable<SubjectModel[]>
+
+  constructor(
+    private store:Store,
+    private route:ActivatedRoute
+    ){}
   ngOnInit(): void {
-      // this.store.dispatch(new GetSubjectInfo())
-      // this.store.dispatch(new GetSubmissionsFolder())
-
+    this.route.queryParams
+    .subscribe(params => {
+      this.store.dispatch(new GetSubjectList()).subscribe(()=>{
+            this.subjectList$.subscribe((res)=>{
+            this.id = res.find(item => item.abbreviation === params['subjectAbbr'])?.id
+        })
+        this.store.dispatch(new GetSubjectInfo(this.id))
+      })
+    });
   }
 }

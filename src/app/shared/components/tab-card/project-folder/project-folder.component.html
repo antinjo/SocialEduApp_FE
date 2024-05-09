@@ -1,0 +1,33 @@
+<div *ngIf="isLoadedProjects$ | async">
+    <p-panel header="{{tabName}}">
+            <ng-template pTemplate="icons">
+                <a (click)="goBack()" class="p-panel-header-icon p-link mr-2">
+                    <span class="pi pi-arrow-left"></span>
+                </a>
+            </ng-template>
+            <div>    
+                <div *ngIf="show===false">
+                    <div class="grid">
+                        <div class="col-5 ml-5 mb-3" *ngFor="let sub of exactProjectList.slice(0,20)">
+                            <a href="{{sub.link}}"><div class="text-center p-3 border-round-sm bg-button font-bold">{{sub.title}}</div></a>
+                        </div>
+                    </div>
+                </div>
+                <div *ngIf="show===true">
+                    <div class="grid">
+                        <div class="col-5 ml-5 mb-3" *ngFor="let sub of exactProjectList.slice(first,pageCount)">
+                            <a href="{{sub.link}}"><div class="text-center p-3 border-round-sm bg-button font-bold">{{sub.title}}</div></a>
+                        </div>
+                    </div>
+                    <p-paginator (onPageChange)="onPageChange($event)" [first]="first" [rows]="rows" [totalRecords]="folderLength"></p-paginator>
+                </div>
+                <div *ngIf="folderLength>6">
+                    <button class="p-fluid w-full p-button justify-content-center" (click)="show = !show">{{ show ? 'Prikaži manje': 'Prikaži više' }}</button>
+                </div> 
+            </div>
+    </p-panel>
+</div>
+
+<div *ngIf="!(isLoadedProjects$ | async)" class="flex justify-content-center">
+    <p-progressSpinner></p-progressSpinner>
+</div>

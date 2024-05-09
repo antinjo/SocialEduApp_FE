@@ -1,18 +1,32 @@
-<p-tabView>
-    <p-tabPanel header="Studenti">
-        <p>
-            <app-pd-tabs [selectedTab]="'Studenti'"></app-pd-tabs>
-        </p>
-    </p-tabPanel>
-    <p-tabPanel header="Kolegij">
-        <p>
-            <app-pd-tabs [selectedTab]="'Kolegij'"></app-pd-tabs>
-        </p>
-    </p-tabPanel>
-    <p-tabPanel header="Infromacije">
-        <p>
-            <app-info-card></app-info-card>
-        </p>
-    </p-tabPanel>
-</p-tabView>
+<div class="grid justify-content-center">
+    <img src="https://primefaces.org/cdn/primeng/images/galleria/galleria1.jpg" class="h-13rem w-12"/>
+    <div *ngIf="isLoadedStudenti$ | async" class="w-10 col-offset-1 border-left-right">
+        <h1 class="w-11 pl-5">{{institution}}</h1>
+        <p-tabView>
+            <p-tabPanel header="Studenti">
+                <p>
+                    <app-pd-tabs [selectedTab]="'Studenti'"></app-pd-tabs>
+                </p>
+            </p-tabPanel>
+            <p-tabPanel header="Kolegij">
+                <p>
+                    <app-pd-tabs [selectedTab]="'Kolegij'"></app-pd-tabs>
+                </p>
+            </p-tabPanel>
+            <!-- TODO <p-tabPanel header="Infromacije">
+                <div class="pt-5">
+                    <p-panel header="Informacije">
+                        <p>
+                            <app-info></app-info> 
+                        </p>
+                    </p-panel>
+                </div>
+            </p-tabPanel> -->
+        </p-tabView>
+    </div>
+    <div *ngIf="!(isLoadedStudenti$ | async)" class="flex justify-content-center">
+        <p-progressSpinner></p-progressSpinner>
+    </div>
+</div>
+
 

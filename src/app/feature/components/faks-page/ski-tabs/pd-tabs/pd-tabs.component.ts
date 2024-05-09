@@ -14,5 +14,4 @@ export class PdTabsComponent implements OnInit {
     
     this.selectedPdTab= this.selectedTab
   }
-   
 }
