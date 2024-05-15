@@ -23,7 +23,8 @@ export class PostComponent implements OnInit {
     posts:PostModel[];
     comments:CommentModel[];
     commentsOpen:boolean = false
-    likeClicked:boolean = false
+    // TODO maknuti ovo kada BE postavi varijable u objekct Posta 
+    likeClicked:boolean[] = [false,false,false,false,false];
     value!:string;
     index:number;
 
@@ -34,9 +35,9 @@ export class PostComponent implements OnInit {
     .subscribe((params)=>{
       this.store.dispatch(new GetPosts(params['userName'])).subscribe(()=>{
         this.posts$.subscribe((res)=>{
-          console.warn("post",res);
-          
+          console.warn("post",res); 
           this.posts = res
+
           for(const i of res){
               this.comments = i.comments
           }
@@ -49,8 +50,8 @@ export class PostComponent implements OnInit {
     this.index = index;
   }
 
-  likePost(){
-    this.likeClicked = !this.likeClicked
+  likePost(index){
+    this.likeClicked[index] = !this.likeClicked[index]
   }
 
   addComment(){
