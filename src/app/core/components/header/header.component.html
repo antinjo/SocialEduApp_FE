@@ -9,7 +9,7 @@
                     <img src="assets/favicon.png" />
                 </a>
             </ng-template>
-            <!-- <ng-template pTemplate="center">
+            <ng-template pTemplate="center">
                 <div *ngIf="isLoggedIn$ | async" class="grid">
                     <div class="flex justify-content-end align-items-center">
                         <div class="p-input-icon-left">
@@ -18,11 +18,11 @@
                         </div>
                     </div>
                 </div>
-            </ng-template> -->
+            </ng-template>
             <ng-template pTemplate="end">
                 <div class="flex flex-wrap align-items-center gap-3">
-                    <!-- <p-avatar styleClass="mr-2 cursor-pointer" size="large" (click)="showDialog()" [style]="{ 'background-color': '#ffffff', color: '#00000' }" shape="circle"><span class="pi pi-question-circle cursor-pointer"></span></p-avatar> -->
-                    <!-- <p-avatar *ngIf="isLoggedIn$ | async" [routerLink]="['/chat']" [queryParams]="{userName: loggedInUser }" styleClass="mr-2 cursor-pointer" size="large" [style]="{ 'background-color': '#ffffff', color: '#00000' }" shape="circle"><span class="pi pi-comments cursor-pointer"></span></p-avatar> -->
+                    <p-avatar styleClass="mr-2 cursor-pointer" size="large" (click)="showDialog()" [style]="{ 'background-color': '#ffffff', color: '#00000' }" shape="circle"><span class="pi pi-question-circle cursor-pointer"></span></p-avatar>
+                    <p-avatar *ngIf="isLoggedIn$ | async" [routerLink]="['/chat']" [queryParams]="{userName: loggedInUser }" styleClass="mr-2 cursor-pointer" size="large" [style]="{ 'background-color': '#ffffff', color: '#00000' }" shape="circle"><span class="pi pi-comments cursor-pointer"></span></p-avatar>
                     <p-avatar *ngIf="isLoggedIn$ | async" (click)="onToggle()" styleClass="mr-2 cursor-pointer" size="large" [style]="{ 'background-color': '#ffffff', color: '#00000' }" shape="circle"><span class="pi pi-bell cursor-pointer"></span></p-avatar>
                     <a *ngIf="isLoggedIn$ | async" [routerLink]="['/userpage']" [queryParams]="{userName: loggedInUser }">
                     <p-avatar image="{{loggedInUserModel?.image}}" styleClass="mr-2" size="large" [style]="{ 'background-color': '#2196F3', color: '#ffffff' }" shape="circle"></p-avatar>
