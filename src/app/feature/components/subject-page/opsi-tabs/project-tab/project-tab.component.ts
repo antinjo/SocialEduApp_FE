@@ -107,9 +107,9 @@ export class ProjectTabComponent implements OnInit{
       this.newProject.title = this.projectForm.value.title
     })
     
-    this.homeService.postSubjectProject(this.newProject).subscribe(()=>{
-      this.store.dispatch(new GetSubjectInfo(this.newProject.subjectID))
-    });
+    // this.homeService.postSubjectProject(this.newProject).subscribe(()=>{
+    //   this.store.dispatch(new GetSubjectInfo(this.newProject.subjectID))
+    // });
     this.visiblePT = false
     this.visible = false
   }

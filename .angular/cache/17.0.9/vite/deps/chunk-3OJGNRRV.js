@@ -7,12 +7,12 @@ import {
   CheckIcon
 } from "./chunk-STKMVT5F.js";
 import {
-  TimesIcon
-} from "./chunk-DDI35TOV.js";
-import {
   Ripple,
   RippleModule
 } from "./chunk-FFR5D7NY.js";
+import {
+  TimesIcon
+} from "./chunk-DDI35TOV.js";
 import {
   MessageService,
   PrimeNGConfig,
@@ -678,4 +678,4 @@ export {
   Messages,
   MessagesModule
 };
-//# sourceMappingURL=chunk-VQ3P3VHV.js.map
+//# sourceMappingURL=chunk-3OJGNRRV.js.map
