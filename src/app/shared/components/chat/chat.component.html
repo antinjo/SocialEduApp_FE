@@ -1,0 +1,17 @@
+<<div class="grid h-screen">
+    <div class="w-3">
+        <stream-channel-list></stream-channel-list>
+    </div>
+    <div class="w-9">
+        <stream-channel>
+            <stream-message-list></stream-message-list>
+            <stream-notification-list></stream-notification-list>
+            <stream-message-input></stream-message-input>
+            <stream-thread name="thread">
+              <stream-message-list mode="thread"></stream-message-list>
+              <stream-message-input mode="thread"></stream-message-input>
+            </stream-thread>
+          </stream-channel>
+    </div>
+</div>
+
