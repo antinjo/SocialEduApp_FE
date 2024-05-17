@@ -103,11 +103,10 @@ export class ProjectTabComponent implements OnInit{
       this.newProject.userEmail = "student@gmaill.com"
       this.newProject.userFirstName = "Mihael"
       this.newProject.userLastName = "Ladic"
-      this.newProject.description = this.projectTaskForm.value.description
-      this.newProject.title = this.projectTaskForm.value.title
+      this.newProject.description = this.projectForm.value.description
+      this.newProject.title = this.projectForm.value.title
     })
     this.homeService.postSubjectProject(this.newProject).subscribe(()=>{
-      console.warn("id",this.newProject);
       this.store.dispatch(new GetSubjectInfo(this.newProject.subjectID))
     });
     this.visiblePT = false
@@ -115,21 +114,21 @@ export class ProjectTabComponent implements OnInit{
   }
   onSubmitPT(){
     this.subjectInfo$.subscribe((res)=>{
-      
     this.newProjectTask.subjectID = res.id
     this.newProjectTask.subject = res
     this.newProjectTask.title = this.projectTaskForm.value.title
     this.newProjectTask.description = this.projectTaskForm.value.description
     this.newProjectTask.criteria = this.projectTaskForm.value.criteria
     this.newProjectTask.maxGrade = this.projectTaskForm.value.maxGrade
-
-
     })
+    this.homeService.addProjectTask(this.newProjectTask).subscribe(()=>{
+      this.store.dispatch(new GetSubjectInfo(this.newProjectTask.subjectID))
+    });
     this.visiblePT = false
     this.visible = false
-    this.homeService.addProjectTask(this.newProjectTask).subscribe(()=>{
-      this.store.dispatch(new GetSubjectInfo(this.newProject.subjectID))
-    });
+    
+    
+
   }
 
   onOpenProjectFolder(name:string){

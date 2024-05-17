@@ -700,8 +700,6 @@ export class FeatureState{
         const id:string = action.payload
         return this.homepageService.getSubjectInfo(id).pipe(  
             tap((res)=>{
-                console.warn("getsubjectinfo store",res);
-                
                 ctx.patchState({
                     subjectInfo:res,
                     forumPosts:res.forums,
