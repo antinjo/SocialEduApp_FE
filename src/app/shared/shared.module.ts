@@ -32,6 +32,7 @@ import { ToastModule } from 'primeng/toast';
 import { NotificationsComponent } from './components/notifications/notifications.component';
 import { SavedFolderComponent } from './components/tab-card/saved-folder/saved-folder.component';
 import { ProjectFolderComponent } from './components/tab-card/project-folder/project-folder.component';
+import { StreamAutocompleteTextareaModule, StreamChatModule } from 'stream-chat-angular';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { DialogModule } from 'primeng/dialog';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
@@ -75,6 +76,8 @@ import { DynamicDialogModule } from 'primeng/dynamicdialog';
     InputTextareaModule,
     DialogModule,
     ReactiveFormsModule,
+    StreamAutocompleteTextareaModule,
+    StreamChatModule,
     ProgressSpinnerModule,
     DynamicDialogModule,
   ],
@@ -112,6 +115,8 @@ import { DynamicDialogModule } from 'primeng/dynamicdialog';
     InputTextareaModule,
     InfoComponent,
     DialogModule,
+    StreamAutocompleteTextareaModule,
+    StreamChatModule,
     ReactiveFormsModule,
     ProgressSpinnerModule,
     DynamicDialogModule,

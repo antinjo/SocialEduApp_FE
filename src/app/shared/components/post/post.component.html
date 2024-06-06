@@ -11,11 +11,11 @@
         <ng-template pTemplate="footer">
             <div class="grid w-full py-2 justify-content-between">
                 <div class="ml-5">
-                    <div *ngIf="!likeClicked">
-                        <i class="pi pi-thumbs-up" (click)="likePost()" style="font-size: 2rem"></i>
+                    <div *ngIf="!likeClicked[i]">
+                        <i class="pi pi-thumbs-up" (click)="likePost(i)" style="font-size: 2rem"></i>
                     </div>
-                    <div *ngIf="likeClicked">
-                        <i class="pi pi-thumbs-up-fill" (click)="likePost()" style="font-size: 2rem"></i>
+                    <div *ngIf="likeClicked[i]">
+                        <i class="pi pi-thumbs-up-fill" (click)="likePost(i)" style="font-size: 2rem"></i>
                     </div>
                 </div>
                 <div class="mr-3">
@@ -50,10 +50,10 @@
             <div class="grid">
                 <div>
                     <div class="flex align-items-center w-12">
-                        <h3>{{post.title}}</h3>
+                        <h3>{{post?.title}}</h3>
                     </div>
                     <div class="flex align-items-center w-12 py-1">
-                        <span>{{post.description}}</span>
+                        <span>{{post?.description}}</span>
                     </div>
                 </div>
                 <div>
@@ -61,10 +61,10 @@
                         <span><span class="font-bold">Kolegij:</span> {{post.subjectName}}</span>
                     </div>
                     <div class="flex align-items-center w-9 py-1">
-                        <span><span class="font-bold">Naziv projekta:</span> {{post.projectTask.title}}</span>
+                        <span><span class="font-bold">Naziv projekta:</span> {{post.projectTask?.title}}</span>
                     </div>
                     <div class="flex align-items-center w-12 py-1">
-                        <span><span class="font-bold">Zadatak:</span> {{post.projectTask.description}}</span>
+                        <span><span class="font-bold">Zadatak:</span> {{post.projectTask?.description}}</span>
                     </div>
                     <div class="grid">
                         <img class="w-10 col-offset-1 p-3" *ngIf="post.imageLink != ''" src="{{post.imageLink}}">

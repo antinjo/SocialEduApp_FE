@@ -11,6 +11,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
 import { NgxsLoggerPluginModule } from '@ngxs/logger-plugin';
 import { FeatureState } from './feature/store/feature.store';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,7 @@ import { FeatureState } from './feature/store/feature.store';
     NgxsReduxDevtoolsPluginModule,
     NgxsLoggerPluginModule,
     HttpClientModule,
-    CoreModule,
+    TranslateModule.forRoot(),
   ],
   providers: [],
   bootstrap: [AppComponent]

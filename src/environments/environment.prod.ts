@@ -1,6 +1,6 @@
 export const environment = {
     production: true,
-    link:'https://socialeduapiepidi2.azurewebsites.net',
+    link:'https://socialeduapibe.azurewebsites.net',
     name:'production environment',
     code: 1004,
 };
