@@ -2,7 +2,7 @@
 <div class="card flex justify-content-center">
     <p-dialog header="Dodaj novi zadatak" [(visible)]="visiblePT" [modal]="true" [style]="{ width: '75vw' }" [draggable]="false" [resizable]="false">
         <p-card>
-            <form [formGroup]="projectTaskForm" (ngSubmit)="onSubmit()">
+            <form [formGroup]="projectTaskForm">
                 <div class="grid">
                     <div class="p-2 w-12">
                         <div class="grid">

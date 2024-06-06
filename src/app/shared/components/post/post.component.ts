@@ -35,9 +35,7 @@ export class PostComponent implements OnInit {
     .subscribe((params)=>{
       this.store.dispatch(new GetPosts(params['userName'])).subscribe(()=>{
         this.posts$.subscribe((res)=>{
-          console.warn("post",res); 
           this.posts = res
-
           for(const i of res){
               this.comments = i.comments
           }
