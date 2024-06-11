@@ -6,6 +6,9 @@ import { FeatureState } from '../../../feature/store/feature.store';
 import { Observable } from 'rxjs';
 import { GetUserInfo } from '../../../feature/store/feature.action';
 import { UserModel } from '../../../feature/models/user.model';
+import { CoreService } from '../../services/core.service';
+import { Search } from '../../models/search.model';
+import { SearchResult } from '../../models/searchResult.model';
 
 @Component({
   selector: 'app-header',
@@ -20,11 +23,20 @@ export class HeaderComponent implements OnInit{
   loggedInUser:string
   loggedInUserModel:UserModel
   visible: boolean = false;
+  searchResultsVisible:boolean = false;
   user:UserModel
+  searchText: string = "";
+  search:Search ={
+    SearchString : "",
+    UserEmail:""
+  };
+  searchResults:SearchResult[];
+
   constructor(
     private homepageservices:HomepageService,
     private route:ActivatedRoute,
-    private store:Store
+    private store:Store,
+    private corepageservices:CoreService
     ){}
 
     @Select(FeatureState.getIsLoggedIn) isLoggedIn$:Observable<boolean>
@@ -66,4 +78,21 @@ export class HeaderComponent implements OnInit{
     this.toggle = !this.toggle
   }
 
+  onKeydown(event) {
+    if (event.key === "Enter") {
+      if(this.searchText != ""){
+        this.search = {
+          SearchString : this.searchText,
+          UserEmail : this.loggedInUser
+        }
+        this.corepageservices.getSearchResults(this.search).subscribe((res)=>{
+          if(res.length != 0){
+            this.searchResults = res;
+          }
+        })
+        this.searchResultsVisible = !this.searchResultsVisible
+      }
+
+    }
+  }
 }

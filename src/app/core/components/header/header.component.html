@@ -12,9 +12,12 @@
             <ng-template pTemplate="center">
                 <div *ngIf="isLoggedIn$ | async" class="grid">
                     <div class="flex justify-content-end align-items-center">
-                        <div class="p-input-icon-left">
-                            <i class="pi pi-search"></i>
-                            <input class=" pl-5 col-12 border-round inputMargin" type="text" pInputText placeholder="Global Search" />
+                        <div class="flex flex-wrap">
+                            <div class="p-input-icon-left col-12 sticky">
+                                <i class="pi pi-search"></i>
+                                <input class=" pl-5 col-12 border-round inputMargin" type="text" pInputText placeholder="Search" [(ngModel)]="searchText" (keydown.enter)="onKeydown($event)" />
+                            </div>
+                            <app-search-results [searchResultList]="searchResults" *ngIf="searchResultsVisible" class="z-1 absolute surface-section border-round col-6 search-position shadow-3"></app-search-results>
                         </div>
                     </div>
                 </div>
@@ -34,7 +37,7 @@
 </div>
 <div *ngIf="toggle" class="grid">
     <div class="absolute z-1 col-3 col-offset-9 flex align-items-center justify-content-center">
-        <app-notifications class="relative z-1 surface-section border-round"></app-notifications>
+        <app-notifications class="relative z-1 surface-section border-round shadow-3 px-3"></app-notifications>
     </div>
 </div>
 <div class="card flex justify-content-center">

@@ -37,6 +37,7 @@ import { InputTextareaModule } from 'primeng/inputtextarea';
 import { DialogModule } from 'primeng/dialog';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { DynamicDialogModule } from 'primeng/dynamicdialog';
+import { SearchResultsComponent } from './components/search-results/search-results.component';
 @NgModule({
   declarations: [
     PostComponent,
@@ -46,6 +47,7 @@ import { DynamicDialogModule } from 'primeng/dynamicdialog';
     NotificationsComponent,
     SavedFolderComponent,
     ProjectFolderComponent,
+    SearchResultsComponent,
   ],
   imports: [
     CommonModule,
@@ -120,6 +122,7 @@ import { DynamicDialogModule } from 'primeng/dynamicdialog';
     ReactiveFormsModule,
     ProgressSpinnerModule,
     DynamicDialogModule,
+    SearchResultsComponent
   ]
 })
 export class SharedModule { }
