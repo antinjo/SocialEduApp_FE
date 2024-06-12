@@ -92,7 +92,9 @@ export class HeaderComponent implements OnInit{
         })
         this.searchResultsVisible = !this.searchResultsVisible
       }
-
+    }
+    if(event.key ==="Backspace"){
+      this.searchResultsVisible = false;
     }
   }
 }
