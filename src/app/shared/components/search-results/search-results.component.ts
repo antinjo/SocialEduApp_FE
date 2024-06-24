@@ -1,11 +1,9 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { SearchResult } from '../../../core/models/searchResult.model';
-import { Select, Store } from '@ngxs/store';
-import { ActivatedRoute } from '@angular/router';
+import { Select } from '@ngxs/store';
 import { Observable } from 'rxjs';
 import { SubjectModel } from '../../../feature/models/subject.model';
 import { UserModel } from '../../../feature/models/user.model';
-import { GetUserInfo, GetSubjectForUser } from '../../../feature/store/feature.action';
 import { FeatureState } from '../../../feature/store/feature.store';
 import { InstitutionsModel } from '../../../feature/models/institution.model';
 
@@ -14,7 +12,7 @@ import { InstitutionsModel } from '../../../feature/models/institution.model';
   templateUrl: './search-results.component.html',
   styleUrl: './search-results.component.scss'
 })
-export class SearchResultsComponent implements OnInit{
+export class SearchResultsComponent{
 
   @Input() searchResultList:SearchResult[];
 
@@ -28,32 +26,5 @@ export class SearchResultsComponent implements OnInit{
   users: UserModel[];
   userEmail:string;
 
-  constructor( 
-    private store:Store,
-    private route:ActivatedRoute
-  ){}
-
-  ngOnInit(): void {
-      console.warn(this.searchResultList);
-
-      this.route.queryParams
-      .subscribe(params => {
-        this.store.dispatch(new GetUserInfo(params['userName'])).subscribe(()=>{
-          this.user$.subscribe((res) =>{
-            this.userEmail=res.email
-            this.institutions = res.institutions;
-          })
-          this.savedUsersFolders$.subscribe((res) =>{
-            this.users = res;
-          })
-          this.store.dispatch(new GetSubjectForUser(params['userName'])).subscribe(()=>{
-            this.userSubjects$.subscribe((res)=>{
-              this.subjects = res
-            })
-          })
-        })
-      });
-      
-  }
 
 }

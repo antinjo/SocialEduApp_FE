@@ -26,7 +26,7 @@
                     <div *ngFor ="let institution of institutions?.slice(0,10)">
                         <a 
                         [routerLink]="['/fakspage']" 
-                        [queryParams]="{userName: userEmail,institutionAbbr: institution?.abbreviation}" >
+                        [queryParams]="{userName: userEmail,institutionID: institution?.id}" >
                         {{institution?.abbreviation}}
                     </a>
                         <p-divider></p-divider>

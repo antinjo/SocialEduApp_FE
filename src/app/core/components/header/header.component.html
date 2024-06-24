@@ -15,7 +15,7 @@
                         <div class="flex flex-wrap">
                             <div class="p-input-icon-left col-12 sticky">
                                 <i class="pi pi-search"></i>
-                                <input class=" pl-5 col-12 border-round inputMargin" type="text" pInputText placeholder="Search" [(ngModel)]="searchText" (keydown.enter)="onKeydown($event)" />
+                                <input class=" pl-5 col-12 border-round inputMargin" type="text" pInputText placeholder="Search" [(ngModel)]="searchText" (keydown)="onKeydown($event)" />
                             </div>
                             <app-search-results [searchResultList]="searchResults" *ngIf="searchResultsVisible" class="z-1 absolute surface-section border-round col-6 search-position shadow-3"></app-search-results>
                         </div>

@@ -1,23 +1,37 @@
 <h3>Rezultati pretraživanja</h3>
-<div *ngFor="let searchResults of searchResultList.slice(0,5)">
+<div *ngFor="let searchResults of searchResultList?.slice(0,5)">
     <div *ngIf="searchResults.itemType === 'User'">
         <div class="flex">
             <span class="pi pi-user mt-3 pl-2"></span>
-            <a class="pl-2" [routerLink]="['/userpage']" [queryParams]="{userName:searchResults.itemID}"><p>{{searchResults.text}}</p></a>
+            <a 
+            class="pl-2" 
+            [routerLink]="['/userpage']" 
+            [queryParams]="{userName:searchResults.itemID}">
+            <p>
+                {{searchResults?.text}}
+            </p>
+            </a>
         </div>
         <p-divider></p-divider>
     </div>
     <div *ngIf="searchResults.itemType === 'Institution'">
         <div class="flex">
             <span class="pi pi-building mt-3 pl-2"></span>
-            <a class="pl-2" [routerLink]="['/fakspage']" [queryParams]="{userName: userEmail,institutionAbbr: institution?.abbreviation}"><p>{{searchResults.text}}</p></a>
+            <a 
+            class="pl-2" 
+            [routerLink]="['/fakspage']" 
+            [queryParams]="{userName: userEmail,institutionID: searchResults.itemID}">
+            <p>
+                {{searchResults?.text}}
+            </p>
+            </a>
         </div>
         <p-divider></p-divider>
     </div>
     <div *ngIf="searchResults.itemType === 'ProjectSubmission'">
         <div class="flex">
             <span class="pi pi-file-o mt-3 pl-2"></span>
-            <a class="pl-2"><p>{{searchResults.text}}</p></a>
+            <a class="pl-2"><p>{{searchResults?.text}}</p></a>
         </div>
         <p-divider></p-divider>
     </div>
