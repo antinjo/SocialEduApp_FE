@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { AuthResponseData } from '../../models/authResponsData.model';
 import { Router } from '@angular/router';
 import { Store } from '@ngxs/store';
-import { LoginUserName, isloggedIn } from '../../../feature/store/feature.action';
+import { AccessToken, LoginUserName, isloggedIn } from '../../../feature/store/feature.action';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { AlertComponent } from '../alert/alert.component';
 import { MessageService } from 'primeng/api';
@@ -41,9 +41,10 @@ export class LoginComponent implements OnInit{
     this.authObs=this.authService.login(this.email,this.password)
     this.authObs.subscribe(
       res=>{
-        this.router.navigate(['/homepage'],{queryParams: {userName: this.email}});
+        this.store.dispatch(new AccessToken(res.accessToken))
         this.store.dispatch(new isloggedIn(true))
         this.store.dispatch(new LoginUserName(this.email))
+        this.router.navigate(['/homepage'],{queryParams: {userName: this.email}});
         this.password = ""
         this.email =""
       },
@@ -59,9 +60,10 @@ export class LoginComponent implements OnInit{
     this.authObsR=this.authService.register(this.emailR,this.passwordR)
     this.authObsR.subscribe(
       res=>{
-        this.router.navigate(['/homepage'],{queryParams: {userName: this.email}});
+        this.store.dispatch(new AccessToken(res.accessToken))
         this.store.dispatch(new isloggedIn(true))
         this.store.dispatch(new LoginUserName(this.email))
+        this.router.navigate(['/homepage'],{queryParams: {userName: this.email}});
         this.password = ""
         this.email =""
       },
