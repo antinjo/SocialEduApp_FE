@@ -69,7 +69,7 @@
                     <div class="grid">
                         <img class="w-10 col-offset-1 p-3" *ngIf="post.imageLink != ''" src="{{post.imageLink}}">
                     </div>
-                    <div class="flex align-items-center w-12 py-1 m-1">
+                    <div *ngIf="post.link != null " class="flex align-items-center w-12 py-1 m-1">
                         <a href="{{post.link}}" class="border-round flex justify-content-center my-auto text-center secondary-color-button w-6 col-offset-3">
                             <div class="secondary-color-button white-text button-github">GitHub Link</div>
                         </a>
