@@ -2,3 +2,18 @@
     margin-top: 16%;
     margin-bottom: 18%;
 }
+
+.pleft{
+    padding-left: 23%;
+}
+.pright{
+    padding-right: 23%;
+}
+.pl-button{
+    padding-left: 33%;
+}
+@media only screen and (max-width: 1586px) {
+    .pl-button{
+        padding-left: 1%;
+    }
+  }
