@@ -9,8 +9,8 @@
             </div>
         </ng-template>
         <ng-template pTemplate="footer">
-            <div class="grid w-full py-2 justify-content-between">
-                <div class="ml-5">
+            <div class="grid w-full py-2 justify-content-end">
+                <div class="ml-5 px-3">
                     <div *ngIf="!likeClicked[i]">
                         <i class="pi pi-thumbs-up" (click)="likePost(i)" style="font-size: 2rem"></i>
                     </div>
@@ -18,7 +18,7 @@
                         <i class="pi pi-thumbs-up-fill" (click)="likePost(i)" style="font-size: 2rem"></i>
                     </div>
                 </div>
-                <div class="mr-3">
+                <div class="mr-2 pl-1">
                     <i (click)="openComments(i)" class="pi pi-comments" style="font-size: 2rem"></i>
                 </div>
             </div>
