@@ -40,9 +40,9 @@
                         </div>
                     </div>
                 </div>
-                <div class="grid p-5">
-                        <textarea class="w-12 m-3" rows="5" cols="30" pInputTextarea placeholder="Dodaj komentar" [autoResize]="true" [(ngModel)]="value"></textarea>
-                        <button (click)="addComment()" class="p-button justify-content-center w-full">Dodaj komentar</button>
+                <div class="grid p-5 justify-content-center">
+                        <textarea class="col-10" rows="3" cols="30" pInputTextarea placeholder="Dodaj komentar" [autoResize]="true" [(ngModel)]="value"></textarea>
+                        <i (click)="addComment()" class="flex align-items-center pi pi-send col-2 pleft-center" style="font-size: 2rem"></i>
                 </div>
             </div>
         </ng-template>
