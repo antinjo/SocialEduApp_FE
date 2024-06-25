@@ -17,3 +17,10 @@
         padding-left: 1%;
     }
   }
+  ::ng-deep .testDialog {
+    .p-dialog-header{
+      .p-dialog-title{
+        color:red
+      }
+    }
+  }

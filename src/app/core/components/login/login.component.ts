@@ -50,7 +50,7 @@ export class LoginComponent implements OnInit{
       },
       errorMessage=>{
         this.error = errorMessage;
-        this.show("Username/Password nije točan! Pazi na velika/mala slova!")
+        this.show("Neuspješna prijava ili registracija")
         this.password = ""
         this.email =""
       }
@@ -81,9 +81,10 @@ export class LoginComponent implements OnInit{
         data:{
           message:message
         },
-        header: 'Error',
-        width: '70%',
-        contentStyle: { overflow: 'auto' },
+        header: 'Greška!',
+        width: '35%',
+        contentStyle: { overflow: 'auto'},
+        styleClass:'testDialog',
         baseZIndex: 10000,
     });
 
