@@ -89,12 +89,16 @@ export class HeaderComponent implements OnInit{
           if(res.length != 0){
             this.searchResults = res;
           }
+          this.searchResultsVisible = !this.searchResultsVisible
         })
-        this.searchResultsVisible = !this.searchResultsVisible
       }
     }
     if(event.key ==="Backspace"){
       this.searchResultsVisible = false;
     }
+  }
+
+  resultClicked(data:boolean){
+    this.searchResultsVisible = data
   }
 }

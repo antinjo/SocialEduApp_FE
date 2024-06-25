@@ -2,6 +2,7 @@ import { Injectable } from "@angular/core";
 import { Action, Selector, State, StateContext } from "@ngxs/store";
 import { HomepageService } from "../services/homepage.service";
 import {
+    AccessToken,
     GetChatMessage,
     GetExactFolder, 
     GetExactProjectFolder, 
@@ -61,6 +62,7 @@ interface FeatureStateModel{
     isLoadedSudionici:boolean;
     isLoadedProjects:boolean;
     isLoadedSubject:boolean;
+    accesstokenBearer:string;
 }
 
 @State<FeatureStateModel>({
@@ -74,6 +76,7 @@ interface FeatureStateModel{
         isLoadedSudionici:true,
         isLoadedProjects:true,
         isLoadedSubject:true,
+        accesstokenBearer:"",
         loggedInUserId:"",
         user:{
             firstName: "",
@@ -583,13 +586,17 @@ export class FeatureState{
     static isLoadedSubject(state:FeatureStateModel){
         return state.isLoadedSubject
     }
+    @Selector()
+    static accessToken(state:FeatureStateModel):string{
+        return state.accesstokenBearer
+    }
 
     @Action(GetUserInfo)
     getUserInfo(ctx: StateContext<FeatureStateModel>,action:GetUserInfo){
         const state = ctx.getState();
         state.isLoadedUserPage = false
         const name:string = action.payload
-        return this.homepageService.getUserInfo(name).pipe(
+        return this.homepageService.getUserInfo(name, ctx.getState().accesstokenBearer).pipe(
             tap((res) =>{
                 ctx.patchState({
                     user:res,
@@ -603,7 +610,7 @@ export class FeatureState{
     getSavedUsersInfo(ctx: StateContext<FeatureStateModel>){
         const state = ctx.getState();
         state.isLoadedHomePage = false
-        return this.homepageService.getSavedUsersInfo("1").pipe(
+        return this.homepageService.getSavedUsersInfo("1", ctx.getState().accesstokenBearer).pipe(
             tap((res) =>{
                 ctx.patchState({
                     savedUsers:res.users,
@@ -618,7 +625,7 @@ export class FeatureState{
         const state = ctx.getState();
         state.isLoadedSaved = false
         const name:string = action.payload
-        return this.homepageService.getSavedFoldersByUser(name).pipe(
+        return this.homepageService.getSavedFoldersByUser(name, ctx.getState().accesstokenBearer).pipe(
             tap((res) =>{
                 ctx.patchState({
                     savedFoldersByUser:res,
@@ -632,7 +639,7 @@ export class FeatureState{
     getSubjectsForUSer(ctx:StateContext<FeatureStateModel>,action:GetSubjectForUser){
         const state = ctx.getState();
         const email:string = action.payload
-        return this.homepageService.getSubjectForUser(email).pipe(
+        return this.homepageService.getSubjectForUser(email, ctx.getState().accesstokenBearer).pipe(
             tap((res)=>{
                 ctx.patchState({
                     userSubjects:res.slice(0,10)
@@ -645,7 +652,7 @@ export class FeatureState{
         const state = ctx.getState();
         state.isLoadedProjects = false
         const name:string = action.payload
-        return this.homepageService.getSubmissionsFolders(name).pipe(
+        return this.homepageService.getSubmissionsFolders(name, ctx.getState().accesstokenBearer).pipe(
             tap((res)=>{
                 ctx.patchState({
                     submissionFolder:res,
@@ -657,7 +664,7 @@ export class FeatureState{
     @Action(GetInstitutions)
     getInstitutions(ctx:StateContext<FeatureStateModel>){
         const state = ctx.getState();
-        return this.homepageService.getInstitutions().pipe(
+        return this.homepageService.getInstitutions(ctx.getState().accesstokenBearer).pipe(
             tap((res)=>{
                 ctx.patchState({
                     institutions:res
@@ -670,7 +677,7 @@ export class FeatureState{
         const state = ctx.getState();
         state.isLoadedStudenti=false
         const id:string = action.payload
-        return this.homepageService.getInstitution(id).pipe(
+        return this.homepageService.getInstitution(id, ctx.getState().accesstokenBearer).pipe(
             tap((res)=>{
                 ctx.patchState({
                     institution:res,
@@ -684,7 +691,7 @@ export class FeatureState{
         const state = ctx.getState();
         state.isLoadedSubject = false
         const id:string = action.payload
-        return this.homepageService.getInstitutionSubject(id).pipe(
+        return this.homepageService.getInstitutionSubject(id,ctx.getState().accesstokenBearer).pipe(
             tap((res)=>{
                 ctx.patchState({
                     institutionSubject:res,
@@ -698,7 +705,7 @@ export class FeatureState{
         const state = ctx.getState();
         state.isLoadedSudionici = false
         const id:string = action.payload
-        return this.homepageService.getSubjectInfo(id).pipe(  
+        return this.homepageService.getSubjectInfo(id,ctx.getState().accesstokenBearer).pipe(  
             tap((res)=>{
                 ctx.patchState({
                     subjectInfo:res,
@@ -712,7 +719,7 @@ export class FeatureState{
     @Action(GetSubjectList)
     getSubjectList(ctx:StateContext<FeatureStateModel>){
         const state = ctx.getState();
-        return this.homepageService.getSubjectList().pipe(
+        return this.homepageService.getSubjectList(ctx.getState().accesstokenBearer).pipe(
             tap((res)=>{
                 ctx.patchState({
                     subjectList:res
@@ -724,7 +731,7 @@ export class FeatureState{
     getExactFolder(ctx:StateContext<FeatureStateModel>,action:GetExactFolder){
         const state = ctx.getState();
         const id:string = action.payload
-        return this.homepageService.getSavedFolder(id).pipe(
+        return this.homepageService.getSavedFolder(id, ctx.getState().accesstokenBearer).pipe(
             tap((res)=>{
                 ctx.patchState({
                     userList:res.users
@@ -736,7 +743,7 @@ export class FeatureState{
     getPosts(ctx:StateContext<FeatureStateModel>,action:GetPosts){
         const state = ctx.getState();
         const email:string = action.payload
-        return this.homepageService.getPosts(email).pipe(
+        return this.homepageService.getPosts(email,ctx.getState().accesstokenBearer).pipe(
             tap((res)=>{
                 ctx.patchState({
                     post:res
@@ -748,7 +755,7 @@ export class FeatureState{
     getExactProjectFolder(ctx:StateContext<FeatureStateModel>,action:GetExactProjectFolder){
         const state = ctx.getState();
         const id:string = action.payload
-        return this.homepageService.getSubmissionFolder(id).pipe(
+        return this.homepageService.getSubmissionFolder(id, ctx.getState().accesstokenBearer).pipe(
             tap((res)=>{
                 ctx.patchState({
                     submissions:res.submissions
@@ -760,7 +767,7 @@ export class FeatureState{
     getChatMessage(ctx:StateContext<FeatureStateModel>,action:GetChatMessage){
         const state = ctx.getState();
         const email:string = action.payload
-        return this.homepageService.getChatMsg(email).pipe(
+        return this.homepageService.getChatMsg(email, ctx.getState().accesstokenBearer).pipe(
             tap((res)=>{
                 ctx.patchState({
                     chats:res
@@ -785,6 +792,14 @@ export class FeatureState{
                     loggedInUserId:email,
                 })
  
+    }
+    @Action(AccessToken)
+    accessToken(ctx:StateContext<FeatureStateModel>,action:AccessToken){
+        const state = ctx.getState();
+        const accessToken:string = action.payload
+                ctx.patchState({
+                    accesstokenBearer:accessToken
+                })
     }
 }
 

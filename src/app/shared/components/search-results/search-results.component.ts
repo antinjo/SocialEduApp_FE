@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { SearchResult } from '../../../core/models/searchResult.model';
 import { Select } from '@ngxs/store';
 import { Observable } from 'rxjs';
@@ -15,6 +15,7 @@ import { InstitutionsModel } from '../../../feature/models/institution.model';
 export class SearchResultsComponent{
 
   @Input() searchResultList:SearchResult[];
+  @Output() searchResultClicked = new EventEmitter<boolean>();
 
   @Select(FeatureState.getUserInfo) user$:Observable<UserModel>
   @Select(FeatureState.getSavedUsers) savedUsersFolders$:Observable<UserModel[]>
@@ -25,6 +26,11 @@ export class SearchResultsComponent{
   subjects: SubjectModel[];
   users: UserModel[];
   userEmail:string;
+
+  resultClicked(){
+    const data = false
+    this.searchResultClicked.emit(data);
+  }
 
 
 }

@@ -71,7 +71,7 @@ export class TabCardComponent implements OnInit{
             this.folderInfo = this.institution.users
             this.folderLength = this.folderInfo.length
           })
-        }else if(this.tabName === 'Kolegij'){
+        }else if(this.tabName === 'Kolegiji'){
           this.institutionSubject$.subscribe((res) =>{
             this.institutionSubject = res;
             this.folderInfo = res
