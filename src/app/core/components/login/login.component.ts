@@ -60,10 +60,9 @@ export class LoginComponent implements OnInit{
     this.authObsR=this.authService.register(this.emailR,this.passwordR)
     this.authObsR.subscribe(
       res=>{
-        this.store.dispatch(new AccessToken(res.accessToken))
         this.store.dispatch(new isloggedIn(true))
-        this.store.dispatch(new LoginUserName(this.email))
-        this.router.navigate(['/homepage'],{queryParams: {userName: this.email}});
+        this.store.dispatch(new LoginUserName(this.emailR))
+        this.router.navigate(['/homepage'],{queryParams: {userName: this.emailR}});
         this.password = ""
         this.email =""
       },

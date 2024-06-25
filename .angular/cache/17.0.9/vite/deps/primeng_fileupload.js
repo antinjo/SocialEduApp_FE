@@ -1,12 +1,12 @@
 import {
+  PlusIcon
+} from "./chunk-RMY4JHHW.js";
+import {
   Messages,
   MessagesModule
 } from "./chunk-I7YPHAZ5.js";
 import "./chunk-HRNBR6ZP.js";
 import "./chunk-V4RCPVJH.js";
-import {
-  PlusIcon
-} from "./chunk-RMY4JHHW.js";
 import {
   Button,
   ButtonDirective,

@@ -1,10 +1,4 @@
 import {
-  TranslateDirective,
-  TranslateModule,
-  TranslatePipe,
-  TranslateService
-} from "./chunk-QY4VOH4S.js";
-import {
   AsyncPipe,
   CommonModule,
   DecimalPipe,
@@ -16,6 +10,12 @@ import {
   NgSwitchCase,
   NgTemplateOutlet
 } from "./chunk-5MBXI5FG.js";
+import {
+  TranslateDirective,
+  TranslateModule,
+  TranslatePipe,
+  TranslateService
+} from "./chunk-QY4VOH4S.js";
 import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
