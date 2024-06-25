@@ -64,6 +64,10 @@ export class isloggedIn{
     constructor(public payload: boolean){}
 }
 export class LoginUserName{
-    static readonly type ="[UserNmae] save user name";
+    static readonly type ="[UserName] save user name";
+    constructor(public payload: string){}
+}
+export class AccessToken{
+    static readonly type ="[AccessToken] get access token ";
     constructor(public payload: string){}
 }

@@ -8,7 +8,8 @@ import { MessageService } from 'primeng/api';
 import { SubmissionModel } from '../../../../models/submission.model';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { HomepageService } from '../../../../services/homepage.service';
-import { GetSubjectInfo } from '../../../../store/feature.action';
+import { AccessToken, GetSubjectInfo } from '../../../../store/feature.action';
+import { HttpHeaders } from '@angular/common/http';
 
 interface UploadEvent {
   originalEvent: Event;
@@ -67,6 +68,7 @@ export class ProjectTabComponent implements OnInit{
   };
   visible:boolean = false
   visiblePT:boolean = false
+  token:string = ""
 
   constructor(
     private messageService: MessageService,
@@ -85,6 +87,11 @@ export class ProjectTabComponent implements OnInit{
         this.projectTasks = this.subjectInfo.projectTasks
       } 
     })
+    if(this.token === ""){
+      this.token = localStorage.getItem('accessToken')
+      this.store.dispatch(new AccessToken(this.token))
+    }
+    localStorage.setItem('accessToken',this.token)
   }
 
   onUpload(event:UploadEvent) {
@@ -106,7 +113,7 @@ export class ProjectTabComponent implements OnInit{
       this.newProject.description = this.projectForm.value.description
       this.newProject.title = this.projectForm.value.title
     })
-    this.homeService.postSubjectProject(this.newProject).subscribe(()=>{
+    this.homeService.postSubjectProject(this.newProject,this.token).subscribe(()=>{
       this.store.dispatch(new GetSubjectInfo(this.newProject.subjectID))
     });
     this.visiblePT = false
@@ -121,7 +128,7 @@ export class ProjectTabComponent implements OnInit{
     this.newProjectTask.criteria = this.projectTaskForm.value.criteria
     this.newProjectTask.maxGrade = this.projectTaskForm.value.maxGrade
     })
-    this.homeService.addProjectTask(this.newProjectTask).subscribe(()=>{
+    this.homeService.addProjectTask(this.newProjectTask, this.token).subscribe(()=>{
       this.store.dispatch(new GetSubjectInfo(this.newProjectTask.subjectID))
     });
     this.visiblePT = false

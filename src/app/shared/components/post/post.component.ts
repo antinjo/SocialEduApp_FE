@@ -53,15 +53,17 @@ export class PostComponent implements OnInit {
   }
 
   addComment(){
-    this.comments.push({
-      id:"",
-      text:this.value,
-      userEmail:"student@gmaill.com",
-      userFirstName:"Mihael",
-      userLastName:"Ladić",
-      serImage:""
-    })
-    this.value = ""
+    if(this.value != "" && this.value != null && this.value != undefined){
+      this.comments.push({
+        id:"",
+        text:this.value,
+        userEmail:"student@gmaill.com",
+        userFirstName:"Mihael",
+        userLastName:"Ladić",
+        serImage:""
+      })
+      this.value = ""
+    }
   }
 
   goToPerson(email:string){

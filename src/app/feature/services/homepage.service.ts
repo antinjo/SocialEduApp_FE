@@ -1,6 +1,6 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { EventEmitter, Injectable, Output } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, map } from 'rxjs';
 import { SavedUserModel } from '../models/savedUsers.model';
 import { UserModel } from '../models/user.model';
 import { SubjectModel } from '../models/subject.model';
@@ -11,6 +11,9 @@ import { environment } from '../../../environments/environment';
 import { SubmissionModel } from '../models/submission.model';
 import { ProjectTaksModel } from '../models/projectTask.model';
 import { ChatMessageModel } from '../models/chatMsg.model';
+import { FeatureState } from '../store/feature.store';
+import { Select, Store } from '@ngxs/store';
+import { AccessToken } from '../store/feature.action';
 
 @Injectable({
   providedIn: 'root'
@@ -18,7 +21,7 @@ import { ChatMessageModel } from '../models/chatMsg.model';
 export class HomepageService {
 
 
-  constructor(private http:HttpClient) { }
+  constructor(private http:HttpClient, private store: Store) { }
 
   @Output() toggleEvent = new EventEmitter<boolean>()
 
@@ -26,52 +29,92 @@ export class HomepageService {
     this.toggleEvent.emit(bool)
   }
 
-  getUserInfo(userEmail:string):Observable<UserModel>{
+  accessTokenHeader(token:string){
+    let headers = new HttpHeaders();
+    if(token === ""){
+      token = localStorage.getItem('accessToken')
+      this.store.dispatch(new AccessToken(token))
+    }
+    localStorage.setItem('accessToken',token)
+    return headers.append('Authorization', 'Bearer ' + token);
+  }
+
+  getUserInfo(userEmail:string,token:string):Observable<UserModel>{
+    let headers = new HttpHeaders();
+    headers = this.accessTokenHeader(token)
     return this.http.get<UserModel>(environment.link +"/api/Users/" + userEmail)
   }
-  getSavedUsersInfo(id:string):Observable<SavedUserModel>{
+  getSavedUsersInfo(id:string,token:string):Observable<SavedUserModel>{
+    let headers = new HttpHeaders();
+    headers = this.accessTokenHeader(token)
     return this.http.get<SavedUserModel>(environment.link +"/api/SavedUsersFolders/" + id)
   }
-  getSubjectForUser(email:string):Observable<SubjectModel[]>{
+  getSubjectForUser(email:string,token:string):Observable<SubjectModel[]>{
+    let headers = new HttpHeaders();
+    headers = this.accessTokenHeader(token)
     return this.http.get<SubjectModel[]>(environment.link +"/api/subjects/foruser/" + email)
   }
-  getSavedFoldersByUser(userEmail:string):Observable<SavedUserModel[]>{
+  getSavedFoldersByUser(userEmail:string,token:string):Observable<SavedUserModel[]>{
+    let headers = new HttpHeaders();
+    headers = this.accessTokenHeader(token)
     return this.http.get<SavedUserModel[]>(environment.link +"/api/SavedUsersFolders/foruser/" + userEmail)
   }
-  getSavedFolder(id:string):Observable<SavedUserModel>{
+  getSavedFolder(id:string,token:string):Observable<SavedUserModel>{
+    let headers = new HttpHeaders();
+    headers = this.accessTokenHeader(token)
     return this.http.get<SavedUserModel>(environment.link +"/api/SavedUsersFolders/"+ id)
   }
-  getSubmissionsFolders(userEmail:string):Observable<SubmissionFolderModel[]>{
+  getSubmissionsFolders(userEmail:string,token:string):Observable<SubmissionFolderModel[]>{
+    let headers = new HttpHeaders();
+    headers = this.accessTokenHeader(token)
     return this.http.get<SubmissionFolderModel[]>(environment.link +"/api/submissionsfolders/foruser/" + userEmail)
   }
-  getSubmissionFolder(id:string):Observable<SubmissionFolderModel>{
+  getSubmissionFolder(id:string,token:string):Observable<SubmissionFolderModel>{
+    let headers = new HttpHeaders();
+    headers = this.accessTokenHeader(token)
     return this.http.get<SubmissionFolderModel>(environment.link +"/api/submissionsfolders/" + id)
   }
-  getInstitutions():Observable<InstitutionsModel[]>{
+  getInstitutions(token:string):Observable<InstitutionsModel[]>{
+    let headers = new HttpHeaders();
+    headers = this.accessTokenHeader(token)
     return this.http.get<InstitutionsModel[]>(environment.link +"/api/institutions")
   }
-    getInstitution(id:string):Observable<InstitutionsModel>{
+    getInstitution(id:string,token:string):Observable<InstitutionsModel>{
     return this.http.get<InstitutionsModel>(environment.link +"/api/institutions/" + id)
   }
-  getInstitutionSubject(id:string):Observable<SubjectModel[]>{
+  getInstitutionSubject(id:string,token:string):Observable<SubjectModel[]>{
+    let headers = new HttpHeaders();
+    headers = this.accessTokenHeader(token)
     return this.http.get<SubjectModel[]>(environment.link +"/api/subjects/forinstitution/" + id)
   }
-  getSubjectList():Observable<SubjectModel[]>{
+  getSubjectList(token:string):Observable<SubjectModel[]>{
+    let headers = new HttpHeaders();
+    headers = this.accessTokenHeader(token)
     return this.http.get<SubjectModel[]>(environment.link +"/api/subjects")
   }
-  getSubjectInfo(id:string):Observable<SubjectModel>{
-    return this.http.get<SubjectModel>(environment.link +"/api/subjects/" + id)
+  getSubjectInfo(id:string,token:string):Observable<SubjectModel>{
+    let headers = new HttpHeaders();
+    headers = this.accessTokenHeader(token)
+    return this.http.get<SubjectModel>(environment.link +"/api/subjects/" + id,{headers})
   }
-  getPosts(email:string):Observable<PostModel[]>{
+  getPosts(email:string,token:string):Observable<PostModel[]>{
+    let headers = new HttpHeaders();
+    headers = this.accessTokenHeader(token)
     return this.http.get<PostModel[]>(environment.link +"/api/Home/" + email)
   }
-  postSubjectProject(newSubmission:SubmissionModel):Observable<SubmissionModel>{
+  postSubjectProject(newSubmission:SubmissionModel,token:string):Observable<SubmissionModel>{
+    let headers = new HttpHeaders();
+    headers = this.accessTokenHeader(token)
     return this.http.post<SubmissionModel>(environment.link +"/api/projectsubmissions", newSubmission)
   }
-  addProjectTask(newProjectTaks:ProjectTaksModel):Observable<ProjectTaksModel>{
+  addProjectTask(newProjectTaks:ProjectTaksModel,token:string):Observable<ProjectTaksModel>{
+    let headers = new HttpHeaders();
+    headers = this.accessTokenHeader(token)
     return this.http.post<ProjectTaksModel>(environment.link +"/api/projecttasks", newProjectTaks)
   }
-  getChatMsg(email:string):Observable<ChatMessageModel[]>{
+  getChatMsg(email:string,token:string):Observable<ChatMessageModel[]>{
+    let headers = new HttpHeaders();
+    headers = this.accessTokenHeader(token)
     return this.http.get<ChatMessageModel[]>(environment.link +"/api/chats/foruser/" + email)
   }
 }
